@@ -210,6 +210,13 @@
               <item name="Logiplek" type="b2602c69:ProjectViewProjectNode" />
               <item name="Logiplek" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="LogiPlekv2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="img" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Logiplek" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Logiplek" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="LogiPlekv2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="system" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -285,7 +292,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17648000" />
+    <option name="totallyTimeSpent" value="17787000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
