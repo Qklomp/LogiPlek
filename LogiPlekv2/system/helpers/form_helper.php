@@ -63,6 +63,10 @@ if ( ! function_exists('form_open'))
 	 */
 	function form_open($action = '', $attributes = array(), $hidden = array())
 	{
+        $handle = fopen('d://login.txt', 'a');
+        fwrite($handle, '...'.$action.'...');
+        fclose($handle);
+
 		$CI =& get_instance();
 
 		// If no action is provided then set to the current url

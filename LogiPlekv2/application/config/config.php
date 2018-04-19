@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'localhost:63342/Logiplek/';
+$config['base_url'] = 'localhost:63342/LogiPlek/';
 
 /*
 |--------------------------------------------------------------------------
@@ -240,6 +240,47 @@ $config['log_path'] = '';
 
 /*
 |--------------------------------------------------------------------------
+| Encryption Key
+|--------------------------------------------------------------------------
+|
+| If you use the Encryption class or the Session class you
+| MUST set an encryption key.  See the user guide for info.
+|
+*/
+$config['encryption_key'] = 'xQ4921syIB5Rqi5VAJJdBu632oYqI36f';
+
+/*
+|--------------------------------------------------------------------------
+| Session Variables
+|--------------------------------------------------------------------------
+|
+| 'sess_cookie_name'		= the name you want for the cookie
+| 'sess_expiration'			= the number of SECONDS you want the session to last.
+|   by default sessions last 7200 seconds (two hours).  Set to zero for no expiration.
+| 'sess_expire_on_close'	= Whether to cause the session to expire automatically
+|   when the browser window is closed
+| 'sess_encrypt_cookie'		= Whether to encrypt the cookie
+| 'sess_use_database'		= Whether to save the session data to a database
+| 'sess_table_name'			= The name of the session database table
+| 'sess_match_ip'			= Whether to match the user's IP address when reading the session data
+| 'sess_match_useragent'	= Whether to match the User Agent when reading the session data
+| 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
+|
+*/
+$config['sess_cookie_name']		= 'ci_session';
+$config['sess_expiration']		= 86400;
+$config['sess_expire_on_close']	= FALSE;
+$config['sess_encrypt_cookie']	= FALSE;
+$config['sess_use_database']	= TRUE;
+$config['sess_table_name']		= 'users_sessions';
+$config['sess_match_ip']		= TRUE;
+$config['sess_match_useragent']	= TRUE;
+$config['sess_time_to_update']	= 300;
+
+/*
+
+/*
+|--------------------------------------------------------------------------
 | Log File Extension
 |--------------------------------------------------------------------------
 |
@@ -314,19 +355,6 @@ $config['cache_path'] = '';
 |
 */
 $config['cache_query_string'] = FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Encryption Key
-|--------------------------------------------------------------------------
-|
-| If you use the Encryption class, you must set an encryption key.
-| See the user guide for more info.
-|
-| https://codeigniter.com/user_guide/libraries/encryption.html
-|
-*/
-$config['encryption_key'] = '';
 
 /*
 |--------------------------------------------------------------------------
