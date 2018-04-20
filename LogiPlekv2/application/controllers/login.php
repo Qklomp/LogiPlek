@@ -24,15 +24,11 @@ class Login extends CI_Controller {
 
     $data['title'] = 'Login';
     $this->load->helper('form');
-    $this->load->view('login_form', $data); 
+    $this->load->view('login_form', $data);
   }
 
   public function validate()
   {
-      $handle = fopen('d://login.txt', 'a');
-      fwrite($handle, "LogIn \r\n");
-      fclose($handle);
-
     echo "1";
     $this->load->library('SimpleLoginSecure');
     if($this->simpleloginsecure->login($this->input->post('email'), $this->input->post('wachtwoord'))) {
