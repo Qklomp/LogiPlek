@@ -6,15 +6,10 @@ class MY_Controller extends CI_Controller {
   {
     parent::__construct();
 
-
-      $handle = fopen('D://login.txt', 'a');
-      fwrite($handle, $this->session->userdata('logged_in').' Hi');
-      fclose($handle);
-
-      if (!$this->session->userdata("logged_in"))
-      {
-          redirect('login', 'refresh');
-      }
+    if (!$this->session->userdata("logged_in"))
+    {
+      redirect('login', 'refresh');
+    }
   }
 
   public function user_data()

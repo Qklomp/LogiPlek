@@ -95,7 +95,7 @@
             <li <?php echo ($root === "Koeriers")       ? 'class="active"' : '' ?>><a href="/koeriers/"><i class="fa fa-rocket"></i><span class="nav-span">Koeriers</span></a></li>
             <li <?php echo ($root === "Personeel")      ? 'class="active"' : '' ?>><a href="/personeel/"><i class="fa fa-users"></i><span class="nav-span">Personeel</span></a></li>
             <li <?php echo ($root === "Routes")         ? 'class="active"' : '' ?>><a href="/routes/"><i class="fa fa-road"></i><span class="nav-span">Routes</span></a></li>
-            <li <?php echo ($root === "Steunpunten")    ? 'class="active"' : '' ?>><a href="/steunpunten/"><i class="glyphicon glyphicon-shopping-cart"></i><span class="nav-span">Steunpunten</span></a></li>     
+            <li <?php echo ($root === "Steunpunten")    ? 'class="active"' : '' ?>><a href="/steunpunten/"><i class="glyphicon glyphicon-shopping-cart"></i><span class="nav-span">Steunpunten</span></a></li>
 
             <hr>
             <li><a href="http://webmail.distrivers.nl" target="_blank">
