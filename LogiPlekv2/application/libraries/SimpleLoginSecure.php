@@ -191,13 +191,11 @@ class SimpleLoginSecure
 				return false;
 
 			//Create a fresh, brand new session
-			if (CI_VERSION >= '3.0') {
-				$this->CI->session->sess_regenerate(TRUE);
-			} else {
-				//Destroy old session
-				$this->CI->session->sess_destroy();
-				$this->CI->session->sess_create();
-			}
+
+			//Destroy old session
+			$this->CI->session->sess_destroy();
+			$this->CI->session->sess_create();
+
 
 			$this->CI->db->simple_query('UPDATE ' . $this->user_table  . ' SET user_last_login = "' . date('c') . '" WHERE user_id = ' . $user_data['user_id']);
 
