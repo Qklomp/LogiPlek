@@ -29,7 +29,6 @@ class Login extends CI_Controller {
 
   public function validate()
   {
-    echo "1";
     $this->load->library('SimpleLoginSecure');
     if($this->simpleloginsecure->login($this->input->post('email'), $this->input->post('wachtwoord'))) {
       redirect('admin/dashboard', 'refresh');

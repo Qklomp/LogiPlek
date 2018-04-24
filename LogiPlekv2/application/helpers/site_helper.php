@@ -10,7 +10,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 function asset_url()
 {
 
-    return base_url().'assets/';
+    return base_url().'LogiPlekv2/assets/';
 }
 
 function nl_date($mysql_date)
