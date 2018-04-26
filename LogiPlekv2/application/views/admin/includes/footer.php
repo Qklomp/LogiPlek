@@ -8,7 +8,7 @@
     </div>
 
     <div id="footer">
-       <span class="muted credit pull-right"><a href="http://www.mauricekleine.nl" target="_blank">&copy 2015 Maurice Kleine</a></span>
+       <span class="muted credit pull-right">&copy 2018 Jeroen Hoegen & Quincy Klomp</a></span>
     </div>
 
     <!-- SCRIPTS -->

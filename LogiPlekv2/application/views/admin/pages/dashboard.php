@@ -70,7 +70,7 @@
 
       <div class="panel panel-default col-lg-5 col-lg-offset-2 text-center">
         <div class="panel-body">    
-            <a href="http://62.197.129.40/MapFOX13_46_2/Login.aspx"><h5><i class="fa fa-crosshairs"></i> MapTrace</h5></a>    
+            <a href="http://www.gps-buddy.com/login"><h5><i class="fa fa-crosshairs"></i> GPS Buddy</h5></a>
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@
 <div class="col-lg-4">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3>Updates <small>Werkt iets niet? Mail het naar <a href="mailto:info@mauricekleine.nl">info@mauricekleine.nl</a></h3>
+      <h3>Updates</h3>
     </div>
     <div class="panel-body">
       <?php foreach ($updates as $update): ?>

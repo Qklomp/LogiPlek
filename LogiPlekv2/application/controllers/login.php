@@ -31,7 +31,7 @@ class Login extends CI_Controller {
   {
     $this->load->library('SimpleLoginSecure');
     if($this->simpleloginsecure->login($this->input->post('email'), $this->input->post('wachtwoord'))) {
-      redirect('admin/dashboard', 'refresh');
+      redirect('dashboard', 'refresh');
     }
     else
     {

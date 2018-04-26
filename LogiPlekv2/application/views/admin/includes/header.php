@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
           </button>    
           <a class="navbar-brand collapse-trigger" href="#" id="out"><i class="fa fa-angle-double-left"></i></a>   
-          <a class="navbar-brand" href="/"><p>distrivers <span class="navbar-sub-brand">Logiplek</span></p></a>                
+          <a class="navbar-brand" href="/dashboard/"><p>distrivers <span class="navbar-sub-brand">Logiplek</span></p></a>
         </div>
 
         <div class="navbar-collapse collapse" id="navbar-collapse">          
