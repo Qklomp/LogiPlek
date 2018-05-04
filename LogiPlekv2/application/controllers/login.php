@@ -12,7 +12,7 @@ class Login extends CI_Controller {
   {
     if ($this->session->userdata('logged_in'))
     {
-      redirect('admin/dashboard', 'refresh');
+      redirect('dashboard', 'refresh');
     }
     if (($this->session->flashdata('fout')))
     {
@@ -20,7 +20,7 @@ class Login extends CI_Controller {
     }
 
     $this->load->library('SimpleLoginSecure');
-    $this->simpleloginsecure->create('miechelwachtmeester@distrivers.nl', '12345', false);
+    //$this->simpleloginsecure->create('miechelwachtmeester@distrivers.nl', '12345', false);
 
     $data['title'] = 'Login';
     $this->load->helper('form');
@@ -31,12 +31,12 @@ class Login extends CI_Controller {
   {
     $this->load->library('SimpleLoginSecure');
     if($this->simpleloginsecure->login($this->input->post('email'), $this->input->post('wachtwoord'))) {
-      redirect('dashboard', 'refresh');
+         redirect('dashboard', 'refresh');
     }
     else
     {
       $this->session->set_flashdata('fout', true);
-      redirect('login/', 'refresh');
+        redirect('login/', 'refresh');
     }
   }
 }

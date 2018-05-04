@@ -45,19 +45,19 @@ class User extends MY_Controller {
   public function reset_password()
   {
     $this->load->library('form_validation');
-    $this->form_validation->set_rules('huidig', 'Huidig wachtwoord', 'required|xss_clean');
-    $this->form_validation->set_rules('nieuw', 'Nieuw wachtwoord', 'required|xss_clean');
-    $this->form_validation->set_rules('herhaal', 'Herhaal wachtwoord', 'required|xss_clean|matches[nieuw]');
+    $this->form_validation->set_rules('huidig', 'Huidig wachtwoord', 'required');
+    $this->form_validation->set_rules('nieuw', 'Nieuw wachtwoord', 'required');
+    $this->form_validation->set_rules('herhaal', 'Herhaal wachtwoord', 'required|matches[nieuw]');
 
     if( ($this->form_validation->run() === false) )
-    {      
+    {
       $this->session->set_flashdata('fout', true);
       redirect('gebruiker/instellingen', 'refresh');
     }
     else
     {
       if($this->simpleloginsecure->edit_password($this->session->userdata('user'), $this->input->post('huidig'), $this->input->post('nieuw')))
-      {   
+      {
         $this->session->set_flashdata('aangepast', true);
         redirect('gebruiker/instellingen', 'refresh');
       }

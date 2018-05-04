@@ -35,14 +35,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>    
-          <a class="navbar-brand collapse-trigger" href="#" id="out"><i class="fa fa-angle-double-left"></i></a>   
+          </button>
+          <a class="navbar-brand collapse-trigger" href="#" id="out"><i class="fa fa-angle-double-left"></i></a>
           <a class="navbar-brand" href="/dashboard/"><p>distrivers <span class="navbar-sub-brand">Logiplek</span></p></a>
         </div>
 
         <div class="navbar-collapse collapse" id="navbar-collapse">          
-          <ul class="nav navbar-nav navbar-right">            
-            <li><a href="/dashboard/"><i class="glyphicon glyphicon-th"></i> Dashboard</a></li>                      
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/dashboard/"><i class="glyphicon glyphicon-th"></i> Dashboard</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $voornaam; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -51,7 +51,7 @@
               </ul>
             </li>
           </ul>
-
+            <?php if($this->session->userdata('functie_id')==0 || $this->session->userdata('functie_id')==3 ) : ?>
           <div class="col-sm-4 col-md-3 navbar-right search-form">
             <?php 
               $attributes = array('class' => 'navbar-form parsley');
@@ -65,7 +65,7 @@
               </div>
             </form>
           </div>
-        
+            <?php endif; ?>
         <!-- END NAVBAR-COLLAPSE -->         
         </div>      
       <!-- END CONTAINER-FLUITD -->   
@@ -76,12 +76,13 @@
     <!-- CONTAINER -->
     <div class="container-fluid">
 
-      <div class="row">   
+      <div class="row">
 
         <!-- SIDEBAR -->
         <div class="col-sm-2 col-xs-1 sidebar"> 
         
           <ul class="nav nav-sidebar">
+              <?php if($this->session->userdata('functie_id')==0 || $this->session->userdata('functie_id')==3) : ?>
             <li <?php echo ($root === "Dashboard")      ? 'class="active"' : '' ?>><a href="/dashboard/"><i class="glyphicon glyphicon-th"></i><span class="nav-span">Dashboard</span></a></li>
 
             <hr>
@@ -89,23 +90,32 @@
             <!-- <li <?php echo ($root === "Onderhoud")      ? 'class="active"' : '' ?>><a href="/onderhoud/"><i class="fa fa-wrench"></i><span class="nav-span">Onderhoud</span></a></li> -->
             <!-- <li <?php echo ($root === "Planning")       ? 'class="active"' : '' ?>><a href="#"><i class="fa fa-calendar-o"></i><span class="nav-span">Planning</span></a></li> -->
             <li <?php echo ($root === "Ritregistratie") ? 'class="active"' : '' ?>><a href="/ritregistratie/"><i class="fa fa-list-alt"></i><span class="nav-span">Ritregistratie</span></a></li>
-            
-            <hr>   
-            <li <?php echo ($root === "Auto's")         ? 'class="active"' : '' ?>><a href="/autos/"><i class="fa fa-truck"></i><span class="nav-span">Auto's</span></a></li>
-            <li <?php echo ($root === "Koeriers")       ? 'class="active"' : '' ?>><a href="/koeriers/"><i class="fa fa-rocket"></i><span class="nav-span">Koeriers</span></a></li>
-            <li <?php echo ($root === "Personeel")      ? 'class="active"' : '' ?>><a href="/personeel/"><i class="fa fa-users"></i><span class="nav-span">Personeel</span></a></li>
-            <li <?php echo ($root === "Routes")         ? 'class="active"' : '' ?>><a href="/routes/"><i class="fa fa-road"></i><span class="nav-span">Routes</span></a></li>
-            <li <?php echo ($root === "Steunpunten")    ? 'class="active"' : '' ?>><a href="/steunpunten/"><i class="glyphicon glyphicon-shopping-cart"></i><span class="nav-span">Steunpunten</span></a></li>
 
-            <hr>
-            <li><a href="http://webmail.distrivers.nl" target="_blank">
-              <i class="fa fa-envelope"></i><span class="nav-span">Webmail</span></a></li>
-            <li><a href="http://www.gps-buddy.com/login" target="_blank"><i class="fa fa-crosshairs"></i><span class="nav-span">GPS Buddy</span></a></li> 
-            
-            <hr>
-          </ul>         
+              <!-- Checks if user is admin-->
+              <?php if($this->session->userdata('functie_id')==0 || $this->session->userdata('functie_id')==3) : ?>
+                  <hr>
+                  <li <?php echo ($root === "Auto's")         ? 'class="active"' : '' ?>><a href="/autos/"><i class="fa fa-truck"></i><span class="nav-span">Auto's</span></a></li>
+                  <li <?php echo ($root === "Koeriers")       ? 'class="active"' : '' ?>><a href="/koeriers/"><i class="fa fa-rocket"></i><span class="nav-span">Koeriers</span></a></li>
+                  <li <?php echo ($root === "Personeel")      ? 'class="active"' : '' ?>><a href="/personeel/"><i class="fa fa-users"></i><span class="nav-span">Personeel</span></a></li>
+                  <li <?php echo ($root === "Routes")         ? 'class="active"' : '' ?>><a href="/routes/"><i class="fa fa-road"></i><span class="nav-span">Routes</span></a></li>
+                  <li <?php echo ($root === "Steunpunten")    ? 'class="active"' : '' ?>><a href="/steunpunten/"><i class="glyphicon glyphicon-shopping-cart"></i><span class="nav-span">Steunpunten</span></a></li>
 
+              <?php endif; ?>
+              <?php endif; ?>
+              <?php if($this->session->userdata('functie_id')==1 || $this->session->userdata('functie_id')==2) : ?>
+                    <li <?php echo ($root === "bericht")    ? 'class="active"' : '' ?>><a href="/bericht"><i class="fa fa-inbox" aria-hidden="true"></i><span class="nav-span">Berichten</span></a></li>
+                    <li <?php echo ($root === "emballage")    ? 'class="active"' : '' ?>><a href="/emballage"><i class="fa fa-truck" aria-hidden="true"></i><span class="nav-span">Emballage registratie</span></a></li>
+              <?php endif; ?>
+
+              <?php if($this->session->userdata('functie_id')==0 || $this->session->userdata('functie_id')==3) : ?>
+                    <hr>
+                    <li><a href="http://webmail.distrivers.nl" target="_blank"><i class="fa fa-envelope"></i><span class="nav-span">Webmail</span></a></li>
+                    <li><a href="http://www.gps-buddy.com/login" target="_blank"><i class="fa fa-crosshairs"></i><span class="nav-span">GPS Buddy</span></a></li>
+                    <hr>
+                    </ul>
+            <?php endif; ?>
         <!-- END SIDEBAR -->
+
         </div>
 
         <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2 main">

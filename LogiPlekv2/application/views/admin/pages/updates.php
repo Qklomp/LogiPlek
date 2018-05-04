@@ -6,7 +6,7 @@
 <div class="col-lg-4 col-lg-offset-4">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3>Updates <small>Werkt iets niet? Mail het naar <a href="mailto:info@mauricekleine.nl">info@mauricekleine.nl</a></h3>
+      <h3>Updates</h3>
     </div>
     <div class="panel-body">
       <?php foreach ($updates as $update): ?>

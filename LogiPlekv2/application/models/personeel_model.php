@@ -74,7 +74,6 @@ class Personeel_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('personeel');
 		$this->db->join('personeel_adres', 'personeel_adres.personeel_id = personeel.id', 'left outer');
-		$this->db->join('personeel_email', 'personeel_email.personeel_id = personeel.id', 'left outer');
 		$this->db->join('personeel_functies', 'personeel_functies.functie_id = personeel.functie_id', 'left outer');
 		$this->db->join('personeel_geboortedatum', 'personeel_geboortedatum.personeel_id = personeel.id', 'left outer');   
     $this->db->order_by('voornaam', 'asc');

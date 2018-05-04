@@ -176,6 +176,23 @@ $route['gebruiker/instellingen'] = 'admin/user/index';
 $route['gebruiker/logout'] = 'admin/user/logout';
 $route['gebruiker/pw'] = 'admin/user/reset_password';
 
+/*
+ * -------------------------------------------------------------------------
+ * BERICHTEN
+ * -------------------------------------------------------------------------
+ */
+
+$route['bericht'] = '/admin/bericht';
+
+/*
+ * -------------------------------------------------------------------------
+ * EMBALLAGE
+ * -------------------------------------------------------------------------
+ */
+
+$route['emballage'] = '/admin/emballage';
+
+
 # DEFAULT
 $route['default_controller'] = 'login';
 

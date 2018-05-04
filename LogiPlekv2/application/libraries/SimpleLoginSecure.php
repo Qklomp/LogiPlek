@@ -49,7 +49,7 @@ define('PHPASS_HASH_PORTABLE', false);
 class SimpleLoginSecure
 {
 	protected $CI; // CodeIgniter object
-	protected $user_table = 'users'; // Table name
+	protected $user_table = 'personeel'; // Table name
 	
 	/**
 	* Constructor
@@ -80,8 +80,8 @@ class SimpleLoginSecure
 		}
 		
 		//Check against user table
-		$this->CI->db->where('user_email', $user_email); 
-		$query = $this->CI->db->get_where($this->user_table);
+        $this->CI->db->where('email', $user_email);
+        $query = $this->CI->db->get_where($this->user_table);
 		
 		if ($query->num_rows() > 0) //user_email already exists
 			return false;
@@ -98,9 +98,9 @@ class SimpleLoginSecure
 					'user_modified' => date('c'),
 				);
 
-		$this->CI->db->set($data); 
+		$this->CI->db->set($data);
 
-		if(!$this->CI->db->insert($this->user_table)) //There was a problem! 
+        if(!$this->CI->db->insert($this->user_table)) //There was a problem!
 			return false;						
 				
 		if($auto_login)
@@ -177,17 +177,18 @@ class SimpleLoginSecure
 		
 		
 		//Check against user table
-		$this->CI->db->where('user_email', $user_email); 
+		$this->CI->db->where('email', $user_email);
 		$query = $this->CI->db->get_where($this->user_table);
 
-		
-		if ($query->num_rows() > 0) 
+
+
+        if ($query->num_rows() > 0)
 		{
-			$user_data = $query->row_array(); 
+			$user_data = $query->row_array();
 
 			$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
 
-			if(!$hasher->CheckPassword($user_pass, $user_data['user_pass']))
+			if(!$hasher->CheckPassword($user_pass, $user_data['personeel_pass']))
 				return false;
 
 			//Create a fresh, brand new session
@@ -197,11 +198,11 @@ class SimpleLoginSecure
 			$this->CI->session->sess_create();
 
 
-			$this->CI->db->simple_query('UPDATE ' . $this->user_table  . ' SET user_last_login = "' . date('c') . '" WHERE user_id = ' . $user_data['user_id']);
+			$this->CI->db->simple_query('UPDATE ' . $this->user_table  . ' SET user_last_login = "' . date('c') . '" WHERE id = ' . $user_data['id']);
 
 			//Set session data
 			unset($user_data['user_pass']);
-			$user_data['user'] = $user_data['user_email']; // for compatibility with Simplelogin
+			$user_data['user'] = $user_data['email']; // for compatibility with Simplelogin
 			$user_data['logged_in'] = true;
 			$this->CI->session->set_userdata($user_data);
 			
@@ -210,8 +211,7 @@ class SimpleLoginSecure
 		else 
 		{
 			return false;
-		}	
-
+		}
 	}
 
 	/**
@@ -254,14 +254,15 @@ class SimpleLoginSecure
 	*/
 	function edit_password($user_email = '', $old_pass = '', $new_pass = '')
 	{
-		
+
 		// Check if the password is the same as the old one
-		$this->CI->db->select('user_pass');
-		$query = $this->CI->db->get_where($this->user_table, array('user_email' => $user_email));
+		$this->CI->db->select('personeel_pass');
+		$query = $this->CI->db->get_where($this->user_table, array('email' => $user_email));
 		$user_data = $query->row_array();
 
-		$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);	
-		if (!$hasher->CheckPassword($old_pass, $user_data['user_pass'])){ //old_pass is the same
+
+		$hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
+		if (!$hasher->CheckPassword($old_pass, $user_data['personeel_pass'])){ //old_pass is the same
 			return FALSE;
 		}
 		
@@ -269,12 +270,12 @@ class SimpleLoginSecure
 		$user_pass_hashed = $hasher->HashPassword($new_pass);
 		// Insert new password into the database
 		$data = array(
-			'user_pass' => $user_pass_hashed,
-			'user_modified' => date('c')
+			'personeel_pass' => $user_pass_hashed,
+			'personeel_modified' => date('c')
 		);
-		
+
 		$this->CI->db->set($data);
-		$this->CI->db->where('user_email', $user_email);
+		$this->CI->db->where('email', $user_email);
 		if(!$this->CI->db->update($this->user_table, $data)){ // There was a problem!
 			return FALSE;
 		} else {

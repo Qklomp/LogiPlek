@@ -412,7 +412,7 @@ class Ritregistratie extends MY_Controller {
   {
     $type = 'extern';
 
-    $startDate = strtotime('2013-12-30');
+    $startDate = strtotime('2016-12-30');
     $endDate = strtotime(date('Y-m-d'));
 
     $currDate  = $startDate;

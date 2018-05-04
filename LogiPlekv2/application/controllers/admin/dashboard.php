@@ -16,18 +16,32 @@ class Dashboard extends MY_Controller {
   public function index()
   {
     $data = $this->user_data();
+
     $data['autos'] = $this->autos_model->get_autos();
     $data['koeriers'] = $this->koeriers_model->get_koeriers();
     $data['personeel'] = $this->personeel_model->get_personeel();
     $data['routes'] = $this->routes_model->get_routes();
     $data['steunpunten'] = $this->steunpunten_model->get_steunpunten();
-    $data['updates'] = $this->update_model->get_updates(6);
+    $data['updates'] = $this->update_model->get_updates(2);
     $data['title'] = 'Dashboard';
     $data['root'] = 'Dashboard';
-    $data['main_content'] = 'admin/pages/dashboard'; 
-    $this->load->view('admin/includes/template', $data);
-  }
 
+
+
+    if($this->session->userdata('functie_id')==0)
+    {
+        $data['main_content'] = 'admin/pages/dashboard';
+    }
+    else if($this->session->userdata('functie_id')==3)
+    {
+        $data['main_content'] = 'admin/pages/planner_Dashboard';
+    }
+    else{
+        $data['main_content'] = 'admin/pages/chauffeur_Dashboard';
+    }
+
+      $this->load->view('admin/includes/template', $data);
+  }
   public function updates()
   {
     $data = $this->user_data();   
