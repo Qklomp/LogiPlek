@@ -82,10 +82,10 @@
         <div class="col-sm-2 col-xs-1 sidebar"> 
         
           <ul class="nav nav-sidebar">
-              <?php if($this->session->userdata('functie_id')==0 || $this->session->userdata('functie_id')==3) : ?>
-            <li <?php echo ($root === "Dashboard")      ? 'class="active"' : '' ?>><a href="/dashboard/"><i class="glyphicon glyphicon-th"></i><span class="nav-span">Dashboard</span></a></li>
 
-            <hr>
+            <li <?php echo ($root === "Dashboard")      ? 'class="active"' : '' ?>><a href="/dashboard/"><i class="glyphicon glyphicon-th"></i><span class="nav-span">Dashboard</span></a></li>
+              <hr>
+              <?php if($this->session->userdata('functie_id')==0 || $this->session->userdata('functie_id')==3) : ?>
             <li <?php echo ($root === "Brandstof")      ? 'class="active"' : '' ?>><a href="/brandstof/"><i class="fa fa-tint"></i><span class="nav-span">Brandstof</span></a></li>
             <!-- <li <?php echo ($root === "Onderhoud")      ? 'class="active"' : '' ?>><a href="/onderhoud/"><i class="fa fa-wrench"></i><span class="nav-span">Onderhoud</span></a></li> -->
             <!-- <li <?php echo ($root === "Planning")       ? 'class="active"' : '' ?>><a href="#"><i class="fa fa-calendar-o"></i><span class="nav-span">Planning</span></a></li> -->
@@ -95,6 +95,7 @@
               <?php if($this->session->userdata('functie_id')==0 || $this->session->userdata('functie_id')==3) : ?>
                   <hr>
                   <li <?php echo ($root === "Auto's")         ? 'class="active"' : '' ?>><a href="/autos/"><i class="fa fa-truck"></i><span class="nav-span">Auto's</span></a></li>
+                  <li <?php echo ($root === "Emballage")         ? 'class="active"' : '' ?>><a href="/emballage/"><i class="fa fa-road" aria-hidden="true"></i><span class="nav-span">Emballage</span></a></li>
                   <li <?php echo ($root === "Koeriers")       ? 'class="active"' : '' ?>><a href="/koeriers/"><i class="fa fa-rocket"></i><span class="nav-span">Koeriers</span></a></li>
                   <li <?php echo ($root === "Personeel")      ? 'class="active"' : '' ?>><a href="/personeel/"><i class="fa fa-users"></i><span class="nav-span">Personeel</span></a></li>
                   <li <?php echo ($root === "Routes")         ? 'class="active"' : '' ?>><a href="/routes/"><i class="fa fa-road"></i><span class="nav-span">Routes</span></a></li>
@@ -104,7 +105,7 @@
               <?php endif; ?>
               <?php if($this->session->userdata('functie_id')==1 || $this->session->userdata('functie_id')==2) : ?>
                     <li <?php echo ($root === "bericht")    ? 'class="active"' : '' ?>><a href="/bericht"><i class="fa fa-inbox" aria-hidden="true"></i><span class="nav-span">Berichten</span></a></li>
-                    <li <?php echo ($root === "emballage")    ? 'class="active"' : '' ?>><a href="/emballage"><i class="fa fa-truck" aria-hidden="true"></i><span class="nav-span">Emballage registratie</span></a></li>
+                    <li <?php echo ($root === "emballage")    ? 'class="active"' : '' ?>><a href="/emballage/toevoegen"><i class="fa fa-truck" aria-hidden="true"></i><span class="nav-span">Emballage registratie</span></a></li>
               <?php endif; ?>
 
               <?php if($this->session->userdata('functie_id')==0 || $this->session->userdata('functie_id')==3) : ?>

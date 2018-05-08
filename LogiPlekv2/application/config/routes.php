@@ -191,6 +191,7 @@ $route['bericht'] = '/admin/bericht';
  */
 
 $route['emballage'] = '/admin/emballage';
+$route['emballage/toevoegen'] = '/admin/emballage/toevoegen';
 
 
 # DEFAULT

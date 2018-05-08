@@ -25,7 +25,7 @@
             <div class="panel panel-danger panel-dash">
                 <div class="panel-heading">
                     <ul class="list-inline">
-                        <li><a href="/emballage/"><h3><i class="fa fa-truck" aria-hidden="true"></i> Emballage registreren</h3></a></li>
+                        <li><a href="/emballage/toevoegen"><h3><i class="fa fa-truck" aria-hidden="true"></i> Emballage registreren</h3></a></li>
                     </ul>
                 </div>
             </div>

@@ -1,248 +1,78 @@
+<ol class="breadcrumb">
+    <li><a href="/dashboard/"><i class="glyphicon glyphicon-home"></i> Logiplek</a></li>
+    <li class="active">Emballage</li>
+</ol>
 
-<script src="<?php echo asset_url() ?>js/Klant.js"></script>
+<?php echo (isset($toegevoegd)) ? '<div class="alert alert-dismissable alert-success"><button type="button" class="close" data-dismiss="alert">×</button>De gegevens zijn toegevoegd!</div>' : '' ?>
+<?php echo (isset($aangepast)) ? '<div class="alert alert-dismissable alert-info"><button type="button" class="close" data-dismiss="alert">×</button>De gegevens zijn aangepast!</div>' : '' ?>
+<?php echo (isset($verwijderd)) ? '<div class="alert alert-dismissable alert-info"><button type="button" class="close" data-dismiss="alert">×</button>De gegevens zijn verwijderd!</div>' : '' ?>
 
-<?php
-$attributes = array('class' => 'form-horizontal parsley');
-echo form_open('emballasge/toevoegen', $attributes)
-?>
-    <div class="container">
-        <div class="row">
-            <h1 lass="col-md-6">Emballage registratie</h1>
-        </div>
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <ul class="list-inline">
+            <li><h2><?php echo $title ?></h2></li>
+        </ul>
     </div>
-    <hr>
-    <!-- Vrachtwagen kenteken selecteren -->
 
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-6">Vrachtwagen</div>
-            <div class="col-md-6">
-                <div class="ui-select">
-                    <div class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow">
-                        <select class="form-control" onchange="Toggle()" type="text" name="Vrachtwagen" id="Vrachtwagen">
-                            <option <?php echo set_select('kenteken', '', TRUE); ?>>Selecteer vrachtwagen</option>
-                            <?php foreach ($autos as $v): ?>
-                                <option value="<?php echo $v['kenteken'] ?>"
-                                    <?php set_select('kenteken', $v['kenteken'], FALSE) ?>>
-                                    <?php echo $v['kenteken'] ?>
-                                </option>
-                            <?php endforeach ?>
-                            <option value="999">Bus</option>
-                            <option value="998">Vrachtwagen</option>
-                        </select>
+    <div class="panel-body">
+        <!-- DELETE ALERT -->
+        <div class="modal fade" id="deleteAlert" tabindex="-1" role="dialog" aria-labelledby="deleteAlert" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <p>Weet je zeker dat je deze auto wilt verwijderen? </p>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
+                        <a href="" id="delete" type="button" class="btn btn-danger">Verwijderen</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <table class="table table-striped table-bordered table-hover table-condensed dataTable">
+            <thead>
+            <tr>
+                <th>Klantnummer</th>
+                <th>Kenteken</th>
+                <th>Emballage mee</th>
+                <th>Emballage retour</th>
+                <th class="narrow text-center"></th>
+                <th class="narrow text-center"></th>
+            </tr>
+            </thead>
 
+            <tbody>
+            <?php foreach ($emballage as $emballages): ?>
+                <tr>
+                    <td><a href="/emballage/<?php echo $emballages['id']?>">&nbsp;<?php echo $emballages['klantnummer'] ?></a></a></td>
+                    <td><a href="/emballage/<?php echo $emballages['id']?>">&nbsp;<?php echo $emballages['vrachtwagen'] ?></a></td>
+                    <td class="text-center assortiment">
+                        <?php foreach ($emballage_emballagemee as $a): ?>
+                            <?php if($a['emballage_id'] == $emballages['id']): ?>
+                                <span class="label label-success" id="<?php echo $a['emballage_id'] ?>"><?php echo $a['emballagemee_id']?></span>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                    </td>
+                    <td class="text-center assortiment">
+                        <?php foreach ($emballage_emballageretour as $a): ?>
+                            <?php if($a['emballage_id'] == $emballages['id']): ?>
+                                <span class="label label-success" id="<?php echo $a['emballage_id'] ?>"><?php echo $a['emballageretour_id']?></span>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                    </td>
+                    <td class="text-center"><a href="/emballage/<?php echo $emballages['id']?>"><i class="glyphicon glyphicon-search"></i></a></td>
+                    <td class="text-center"><a href="" class="open-deleteAlert" data-id="<?php echo $emballages['id']?>" data-type="autos" data-toggle="modal" data-target="#deleteAlert"><i class="glyphicon glyphicon-trash"></i></a></td>
 
-
-    <!-- klantnummer invoeren -->
-
-
-    <div class="container collapse" id="klantnummer" >
-        <hr>
-        <div class="row">
-            <div class="col-md-6">Klantnummer</div>
-            <div class="col-md-6">
-                <input onchange="Toggle()" class="form-control" name="Klantnummer" id="Klantnummer">
-            </div>
-        </div>
-        <div class="row">
-            <div id="txtHint"></div>
-        </div>
-    </div>
-
-
-
-    <!-- emballage mee invoeren -->
-
-
-    <div class="container collapse" id = "emballageMee">
-        <hr>
-        <div class="row">
-            <h3 class="col-md-6">Emballage mee</h3>
-        </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">Rolcontainer</div>
-            <div class="col-md-6">
-                <input class="form-control" name="RolcontainerMee" id="RolcontainerMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Tussenrek</div>
-            <div class="col-md-6">
-                <input class="form-control" name="TussenrekMee" id="TussenrekMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Distrivers</div>
-            <div class="col-md-6">
-                <input class="form-control" name="DistriversMee" id="DistriversMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Zuivelkrat</div>
-            <div class="col-md-6">
-                <input class="form-control" name="ZuivelkratMee" id="ZuivelkratMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Box Distrivers</div>
-            <div class="col-md-6">
-                <input class="form-control" name="BoxDistriversMee" id="BoxDistriversMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Viskrat Almelo</div>
-            <div class="col-md-6">
-                <input class="form-control" name="ViskratMee" id="ViskratMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">W en G</div>
-            <div class="col-md-6">
-                <input class="form-control" name="WenGMee" id="WenGMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Veilingfust / CBL Zwart</div>
-            <div class="col-md-6">
-                <input class="form-control" name="VeilingfustMee" id="VeilingfustMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Colli achter voordeur</div>
-            <div class="col-md-6">
-                <input class="form-control" name="ColliachterDeurMee" id="ColliachterDeurMee" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Colli op afdeling</div>
-            <div class="col-md-6">
-                <input class="form-control" name="ColliopAfdelingMee" id="ColliopAfdelingMee" onchange="Toggle()">
-            </div>
-        </div>
+                </tr>
+            <?php endforeach ?>
+            </tbody>
+        </table>
 
     </div>
-
-
-    <!-- emballage retour invoeren -->
-
-
-    <div class="container collapse" id="emballageRetour">
-        <hr>
-        <div class="row">
-            <h3 class="col-md-6">Emballage Retour</h3>
-        </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">Rolcontainer</div>
-            <div class="col-md-6">
-                <input class="form-control" name="RolcontainerRetour" id="RolcontainerRetour" onchange="Toggle()">
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6">Tussenrek</div>
-            <div class="col-md-6">
-                <input class="form-control" name="TussenrekRetour" id="TussenrekRetour" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Distrivers</div>
-            <div class="col-md-6">
-                <input class="form-control" name="DistriversRetour" id="DistriversRetour" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Zuivelkrat</div>
-            <div class="col-md-6">
-                <input class="form-control" name="ZuivelkratRetour" id="ZuivelkratRetour" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Box Distrivers</div>
-            <div class="col-md-6">
-                <input class="form-control" name="BoxDistdriversRetour" id="BoxDistdriversRetour" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Viskrat Almelo</div>
-            <div class="col-md-6">
-                <input class="form-control" name="ViskratRetour" id="ViskratRetour" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">W en G</div>
-            <div class="col-md-6">
-                <input class="form-control" name="WenGRetour" id="WenGRetour" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Veilingfust / CBL Zwart</div>
-            <div class="col-md-6">
-                <input class="form-control" name="VeilingvustRetour" id="VeilingvustRetour" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Statiegeld fles los €0.25</div>
-            <div class="col-md-6">
-                <input class="form-control" name="StatiegeldFles0.25" id="StatiegeldFles0.25" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Statiegeld fles los €0.10</div>
-            <div class="col-md-6">
-                <input class="form-control" name="StatiegeldFles0.1" id="StatiegeldFles0.1" onchange="Toggle()">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">Statiegeld krat vol</div>
-            <div class="col-md-6">
-                <input class="form-control" name="StatiegeldKratVol" id="StatiegeldKratVol" onchange="Toggle()">
-            </div>
-        </div>
-
+    <div class="panel-footer">
+        <ul class="list-inline">
+            <li><a href="/emballage/toevoegen/" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-plus"></i> Toevoegen</a></li>
+            <li><a href="/autos/printen/" target="_blank" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-print"></i> Printen</a></li>
+        </ul>
     </div>
-
-    <div class="container collapse" id="verzendButton">
-        <hr>
-
-        <div class="row">
-
-            <div class="col-md-12">
-                <button class="btn"
-                ">Verzenden</button>
-            </div>
-        </div>
-    </div>
-
-
-</form>
+</div>
