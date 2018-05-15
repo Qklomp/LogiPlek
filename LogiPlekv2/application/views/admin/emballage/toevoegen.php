@@ -18,10 +18,11 @@ echo form_open('emballage/toevoegen', $attributes)
         </ul>
     </div>
     <br>
-    <br>
+
     <!-- Vrachtwagen kenteken selecteren -->
 
     <div class="container">
+
 
         <div class="row">
             <div class="col-md-6">Vrachtwagen</div>

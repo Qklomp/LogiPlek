@@ -86,7 +86,7 @@
                 </div>
                 
                 <label for="email" class="control-label">E-mail </label>        
-                <input type="email" class="form-control input-sm" name="email" placeholder="E-mail" value="<?php echo $personeel['e-mail'] ?>" data-parsley-type="email">                      
+                <input type="email" class="form-control input-sm" name="email" placeholder="E-mail" value="<?php echo $personeel['email'] ?>" data-parsley-type="email">
               </div>   
 
               <!-- INFORMATIE -->

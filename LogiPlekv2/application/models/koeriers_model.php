@@ -108,11 +108,11 @@ class Koeriers_model extends CI_Model {
     {
       if($count === 0)
       {
-        $this->db->insert('koerier_email', array('koerier_id' => $id, '[e-mail]' => $email));
+        $this->db->insert('koerier_email', array('koerier_id' => $id, 'e-mail' => $email));
       }
       else
       {
-        $this->db->update('koerier_email', array('[e-mail]' => $email), array('koerier_id' => $id));
+        $this->db->update('koerier_email', array('e-mail' => $email), array('koerier_id' => $id));
       }
     }
     else if($count === 1)

@@ -130,7 +130,7 @@ class Ritregistratie extends MY_Controller {
       {
         $data['redenen'][] = $r['reden'];
       }
-      $data['users'] = $this->user_model->get_users();
+      $data['users'] = $this->personeel_model->get_personeel();
       $data['type'] = $type;
       $data['id'] = $id;
       $data['js'] = array(

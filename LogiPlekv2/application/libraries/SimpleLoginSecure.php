@@ -191,8 +191,6 @@ class SimpleLoginSecure
 			if(!$hasher->CheckPassword($user_pass, $user_data['personeel_pass']))
 				return false;
 
-			//Create a fresh, brand new session
-
 			//Destroy old session
 			$this->CI->session->sess_destroy();
 			$this->CI->session->sess_create();

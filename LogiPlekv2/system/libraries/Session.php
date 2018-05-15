@@ -485,6 +485,9 @@ class CI_Session {
 		{
 			foreach ($newdata as $key => $val)
 			{
+                $handle = fopen('D://login.txt', 'a');
+                fwrite($handle, $key."\r\n");
+                fclose($handle);
 				$this->userdata[$key] = $val;
 			}
 		}
