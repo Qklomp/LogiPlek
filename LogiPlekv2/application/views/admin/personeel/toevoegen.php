@@ -79,8 +79,8 @@
                   <p class="telefoon-error"></p>
                 </div>
                 
-                <label for="email" class="control-label">E-mail </label>        
-                <input type="email" class="form-control input-sm" name="email" placeholder="E-mail" value="<?php echo set_value('email'); ?>" data-parsley-type="email">                      
+                <label for="email" class="control-label">E-mail <span class="text-danger">*</span></label>
+                <input type="email" class="form-control input-sm" name="email" placeholder="E-mail" value="<?php echo set_value('email'); ?>" data-parsley-type="email" required data-parsley-required>
               </div> 
 
               <!-- OVERIG -->      

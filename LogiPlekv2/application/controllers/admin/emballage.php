@@ -34,6 +34,7 @@ class emballage extends MY_Controller
         $data['js'] = array(
             'DataTable/media/js/jquery.dataTables.min',
             'logiplek/datatables',
+            'logiplek/emballage/toevoegen'
         );
 
         $data['title'] = 'Emballage';
@@ -56,6 +57,8 @@ class emballage extends MY_Controller
         if (($this->session->flashdata('toegevoegd'))) {
             $data['toegevoegd'] = true;
         }
+        $data['emballage_mee'] = $this->emballage_model->get_emballageMee();
+        $data['emballage_retour'] = $this->emballage_model->get_emballageRetour();
 
         $this->load->library('form_validation');
 

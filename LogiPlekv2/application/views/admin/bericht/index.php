@@ -10,13 +10,19 @@
             <li><h2><?php echo $title ?></h2></li>
         </ul>
     </div>
-
+    <?php print_r($contacten); ?>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-3" style="background-color: #0000FF; min-height: 1000px">
-                <?php print_r($contacten); ?>
+            <div class="col-md-3" style="min-height: 1000px">
+                <ul class="nav nav-sidebar">
+                    <?php foreach ($contacten as $key => $value): ?>
+                        <li onclick="get_berichten(<?php  echo $id?>)"><?php echo $value?> </></li>
+                        <hr>
+                    <?php endforeach ?>
+                </ul>
             </div>
-            <div class="col-md-9" style="background-color: #70a426; min-height: 1000px"></div>
+            <div class="col-md-9" style="background-color: #70a426; min-height: 1000px">
+            </div>
         </div>
 
     </div>

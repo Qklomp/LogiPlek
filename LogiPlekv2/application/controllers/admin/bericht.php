@@ -16,14 +16,27 @@ class Bericht extends MY_Controller
 
     public function index()
     {
+        $handle = fopen('D://login.txt', 'a');
         $data = $this->user_data();
+        fwrite($handle, print_r($data));
         $data['contacten'] = $this->bericht_model->get_contacten($data['id']);
+
+        $data['js'] = array(
+            'logiplek/bericht/index',
+        );
 
         $data['title'] = 'Berichten';
         $data['root'] = 'bericht';
         $data['main_content'] = 'admin/bericht/index';
 
+        fclose($handle);
+
         $this->load->view('admin/includes/template', $data);
+    }
+
+
+    public function get_Chat(){
+
     }
 
 

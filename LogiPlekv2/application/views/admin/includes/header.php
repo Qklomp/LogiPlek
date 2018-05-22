@@ -130,6 +130,8 @@
 
                 <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
                 <hr>
+                <li><a href="/bericht"><i class="fa fa-inbox"></i><span
+                            class="nav-span">Berichten</span></a></li>
                 <li><a href="http://webmail.distrivers.nl" target="_blank"><i class="fa fa-envelope"></i><span
                                 class="nav-span">Webmail</span></a></li>
                 <li><a href="http://www.gps-buddy.com/login" target="_blank"><i class="fa fa-crosshairs"></i><span

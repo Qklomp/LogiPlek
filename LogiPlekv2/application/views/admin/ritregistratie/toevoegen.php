@@ -84,10 +84,10 @@
               		<select class="form-control input-sm" name="user" required data-parsley-required="true">
               			<option <?php echo set_select('user', '', TRUE); ?>></option>
                     <?php 
-                      foreach ($users as $u)
+                      foreach ($personeel as $u)
                       {
-                        ($voornaam . ' ' . $achternaam) === ($u['user_first'] . ' ' . $u['user_last']) ? $s = 'selected' : $s = '';
-                        echo '<option ' . $s . ' value="' . $u['user_first'] . ' ' . $u['user_last'] . '"'. set_select('user', $u['user_first'] . ' ' . $u['user_last'], FALSE) . '>' . $u['user_first'] . ' ' . $u['user_last'] . '</option>';
+                        ($voornaam . ' ' . $achternaam) === ($u['voornaam'] . ' ' . $u['achternaam']) ? $s = 'selected' : $s = '';
+                        echo '<option ' . $s . ' value="' . $u['voornaam'] . ' ' . $u['achternaam'] . '"'. set_select('user', $u['voornaam'] . ' ' . $u['achternaam'], FALSE) . '>' . $u['voornaam'] . ' ' . $u['achternaam'] . '</option>';
                       } 
                     ?>
               		</select>

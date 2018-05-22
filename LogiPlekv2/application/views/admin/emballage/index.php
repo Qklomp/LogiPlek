@@ -61,7 +61,8 @@
                             <?php if ($a['emballage_id'] == $emballages['id']): ?>
                                 <?php $index = $a['emballagemee_id'] - 1; ?>
                                 <span class="label label-success"
-                                      id="<?php echo $a['emballage_id'] ?>"><?php echo $emballage_mee[$index]['emballage'] ?></span>
+                                      id="<?php echo $a['emballage_id'] ?>"><?php
+                                     echo $emballage_mee[$index]['emballage'] ?></span>
                             <?php endif ?>
                         <?php endforeach ?>
                     </td>

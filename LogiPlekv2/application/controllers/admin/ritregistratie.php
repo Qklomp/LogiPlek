@@ -484,7 +484,6 @@ class Ritregistratie extends MY_Controller {
       else 
       {
         $data['vervoerder'] = array();
-        $data['personeel'] = $this->personeel_model->get_personeel();
         $data['routes'] = $this->routes_model->get_routes();
         foreach( $data['personeel'] as $e ) 
         {
@@ -493,10 +492,11 @@ class Ritregistratie extends MY_Controller {
         }
       }
 
+
+      $data['personeel'] = $this->personeel_model->get_personeel();
       $data['locaties'] = $this->cms_model->get_locaties();
       $data['participanten'] = $this->cms_model->get_participanten();
       $data['redenen'] = $this->cms_model->get_redenen();
-      $data['users'] = $this->user_model->get_users();
       $data['type'] = $type;
       $data['js'] = array(
         'logiplek/ritregistratie/toevoegen',

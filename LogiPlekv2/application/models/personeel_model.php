@@ -21,6 +21,8 @@ class Personeel_model extends CI_Model {
       'status_id' => '1',
       'toegevoegd_op' => date("Y-m-d H:i:s"),
       'toegevoegd_door' => $user,
+      'email' => $this->input->post('email'),
+      'personeel_pass' => '$2a$08$exmNZJIm2IcEhFVSiKZsKelXdDg5a5QggaM2147GoxEk6vWM6Jfwy',
     );
     $this->db->insert('personeel', $data); 
     $id = $this->db->insert_id();
@@ -56,12 +58,6 @@ class Personeel_model extends CI_Model {
     if($telefoon !== '')
     {       
       $this->db->insert('personeel_telefoon', array('personeel_id' => $id, 'nummer' => $telefoon, 'telefoon_type' => 'Vast'));      
-    }
-
-    $email = $this->input->post('email');
-    if($email !== '')
-    {  
-      $this->db->insert('personeel_email', array('personeel_id' => $id, '[e-mail]' => $email));     
     }
   }
 
@@ -213,23 +209,23 @@ class Personeel_model extends CI_Model {
     }
 
     $email = $this->input->post('email');
-    $query = $this->db->get_where('personeel_email', array('personeel_id' => $id));
+    $query = $this->db->get_where('personeel', array('id' => $id));
     $count= $query->num_rows();     
 
     if($email !== '')
     {  
       if ($count === 0)
       {
-        $this->db->insert('personeel_email', array('personeel_id' => $id, '[e-mail]' => $email)); 
+        $this->db->insert('personeel', array('id' => $id, 'email' => $email));
       }
       else
       {
-        $this->db->update('personeel_email', array('[e-mail]' => $email), array('personeel_id' => $id));
+        $this->db->update('personeel', array('email' => $email), array('id' => $id));
       }
     }
     else if ($count === 1)
     {
-      $this->db->delete('personeel_email', array('personeel_id' => $id)); 
+      $this->db->delete('personeel', array('id' => $id));
     }
   }
 

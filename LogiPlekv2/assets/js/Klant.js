@@ -40,54 +40,7 @@ function Stops(str) {
     xmlhttp.send();
 }
 
-function Toggle() {
 
-    var klantnummer = false;
-    var emballrage = false;
-    var verzendButton = false;
-    if (document.getElementById("Vrachtwagen").selectedIndex !== 0) {
-        klantnummer = true;
-        if (document.getElementById("Klantnummer").value !== "") {
-            emballrage = true;
-            element1 = document.getElementById('emballageMee');
-            elements1 = Array.prototype.slice.call(element1.getElementsByTagName('input'));
-            element2 = document.getElementById('emballageRetour');
-            elements2 = Array.prototype.slice.call(element2.getElementsByTagName('input'));
-            var elements = elements1.concat(elements2);
-
-            for (var i = 0; i < elements.length; i++) {
-                if (elements[i].nodeName === 'INPUT' && elements[i].value !== "0") {
-                    verzendButton = true
-                    break;
-                }
-            }
-
-
-        }
-    }
-
-    if (klantnummer) {
-        document.getElementById("klantnummer").classList.remove("collapse")
-        if (emballrage) {
-            document.getElementById("emballageMee").classList.remove("collapse")
-            document.getElementById("emballageRetour").classList.remove("collapse")
-            if (verzendButton) {
-                document.getElementById("verzendButton").classList.remove("collapse")
-            } else {
-                document.getElementById("verzendButton").classList.add("collapse")
-            }
-        }else{
-            document.getElementById("verzendButton").classList.add("collapse")
-            document.getElementById("emballageRetour").classList.add("collapse")
-            document.getElementById("emballageMee").classList.add("collapse")
-        }
-    }else{
-        document.getElementById("verzendButton").classList.add("collapse")
-        document.getElementById("emballageRetour").classList.add("collapse")
-        document.getElementById("emballageMee").classList.add("collapse")
-        document.getElementById("klantnummer").classList.add("collapse")
-    }
-}
 
 
 

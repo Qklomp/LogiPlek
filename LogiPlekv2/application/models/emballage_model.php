@@ -33,14 +33,14 @@ class emballage_model extends CI_Model
         foreach ($this->input->post(null, true) as $key => $value) {
             if ($value != '0' && ($key != 'Vrachtwagen' && $key != 'Klantnummer')) {
                 $dbKey = explode("_", $key);
-                if ($dbKey[1] === "Mee") {
+                if ($dbKey[1] === "mee") {
                     $data = array(
                         'emballage_id' => $id,
                         'emballagemee_id' => $emballageMeeArray[$dbKey[0]],
                         'aantal' => $value
                     );
                     $this->db->insert('emballage_emballagemee', $data);
-                } else if ($dbKey[1] === "Retour") {
+                } else if ($dbKey[1] === "retour") {
                     $data = array(
                         'emballage_id' => $id,
                         'emballageretour_id' => $emballageRetourArray[$dbKey[0]],
@@ -48,7 +48,7 @@ class emballage_model extends CI_Model
                     );
                     $this->db->insert('emballage_emballageretour', $data);
                 } else {
-                    echo 'HET IS RKAPOT EN IEDEREEN GAAT DOOD!!!!!!!!!!!q111';
+
                 }
 
             }
@@ -68,7 +68,6 @@ class emballage_model extends CI_Model
             'vrachtwagen' => $this->input->post('Vrachtwagen'),
             'toegevoegd_door' => $user
         );
-        print_r($data);
         $this->db->where('id', $id);
         $this->db->update('emballage', $data);
 
@@ -100,8 +99,6 @@ class emballage_model extends CI_Model
                     $this->db->where('emballage_id', $id);
                     $this->db->insert('emballage_emballageretour', $data);
                 } else {
-
-                    echo 'HET IS RKAPOT EN IEDEREEN GAAT DOOD!!!!!!!!!!!q111';
                 }
             }
         }
@@ -119,6 +116,7 @@ class emballage_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('emballage_mee');
+
         if ($id === FALSE) {
             $query = $this->db->get();
             return $query->result_array();
@@ -177,11 +175,17 @@ class emballage_model extends CI_Model
         return $newArray;
     }
 
-    public function get_emballage($id = FALSE)
+    public function get_emballage($id = FALSE, $q = FALSE)
     {
 
         $this->db->select('*');
         $this->db->from('emballage');
+        if ($q !== FALSE)
+        {
+            $this->db->like('toegevoegd_door', $q);
+            $this->db->or_like('vrachtwagen', $q);
+            $this->db->or_like('klantnummer', $q);
+        }
         if ($id === FALSE) {
             $query = $this->db->get();
             return $query->result_array();

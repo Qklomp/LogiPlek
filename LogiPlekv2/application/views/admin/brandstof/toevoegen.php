@@ -37,7 +37,7 @@
               </thead>
               <tbody>
 
-              <?php for($i=0;$i<10;$i++): ?>               
+              <?php for($i=0;$i<10;$i++): ?>
                 <tr>                
                   <td>
                     <input class="form-control input-sm datepicker" type="text" name="dagrapport[<?php echo $i ?>][datum]" value="<?php echo date('d-m-Y') ?>">
@@ -59,7 +59,7 @@
                     </select>             
                   </td>
                   <td>        
-                    <input class="form-control input-sm verbruik" id="beginstand<?php echo $i?>" data-id="<?php echo $i?>" type="text" name="dagrapport[<?php echo $i ?>][beginstand]" value="">
+                    <input class="form-control input-sm verbruik" id="beginstand<?php echo $i?>" data-id="<?php echo $i?>" type="text" name="dagrapport[<?php echo $i ?>][beginstand]" value="" >
                   </td>
                   <td>
                     <input class="form-control input-sm verbruik" id="eindstand<?php echo $i?>" data-id="<?php echo $i?>" type="text" name="dagrapport[<?php echo $i ?>][eindstand]" value="">

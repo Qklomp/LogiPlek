@@ -20,7 +20,8 @@ class Search_model extends CI_Model {
     $this->db->or_like('personeel.plaats', $query);
     $this->db->or_like('routes.nummer', $query);
     $this->db->or_like('steunpunten.naam', $query);
-    $this->db->from('autos, koeriers, personeel, routes, steunpunten');
+    $this->db->or_like('emballage.toegevoegd_door', $query);
+    $this->db->from('autos, koeriers, personeel, routes, steunpunten, emballage');
     
     $query = $this->db->get();
     return $query->result_array();

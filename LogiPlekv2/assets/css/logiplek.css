@@ -271,6 +271,11 @@ body {
   z-index: -1;
 }
 
+.mobileShow{
+  display: none;
+}
+
+
 /* ===== PARSLEY ===== */
 
 .parsley-errors-list {
@@ -316,11 +321,15 @@ body {
   }
 }
 
-@media (max-width: 384px){
+@media (max-width: 480px){
   .sidebar {
     width: 25px !important;
     font-size: 10px;
     z-index: 0;
+  }
+
+  .mobileShow{
+    display: inline;
   }
 
   .main {
@@ -1187,3 +1196,5 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
 .datepicker.dropdown-menu td {
   padding: 4px 5px;
 }
+
+

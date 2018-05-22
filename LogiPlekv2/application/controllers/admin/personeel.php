@@ -164,6 +164,7 @@ class Personeel extends MY_Controller {
     $this->form_validation->set_rules('woonplaats', 'Woonplaats', 'trim|required');
     $this->form_validation->set_rules('locatie', 'Locatie', 'trim|required');
     $this->form_validation->set_rules('functie', 'Functie', 'trim|required');
+    $this->form_validation->set_rules('email', 'email', 'trim|required');
 
     if ($this->form_validation->run() === FALSE)
     {
