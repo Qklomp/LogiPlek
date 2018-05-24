@@ -1,4 +1,4 @@
-  
+
 /* ===== GENERIC ===== */
 
 body {
@@ -43,16 +43,16 @@ a:hover {
 .navbar-header a,
 .navbar-header a:hover,
 .nav-tabs > li > a:hover,
-.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-nav > li > a:hover
- {
-       -o-transition:.5s;
-      -ms-transition:.5s;
-     -moz-transition:.5s;
+{
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
   -webkit-transition:.5s;
-          transition:.5s;
+  transition:.5s;
 }
 
 .navbar-inverse .navbar-nav > li > .a-img {
@@ -76,7 +76,7 @@ a:hover {
   display: block;
   padding: 20px;
   overflow-x: hidden;
-  overflow-y: hidden;       
+  overflow-y: hidden;
 }
 
 .nav-sidebar {
@@ -102,11 +102,11 @@ a:hover {
 
 .nav-sidebar > li > a,
 .nav-sidebar > li > a:hover {
-       -o-transition:.2s;
-      -ms-transition:.2s;
-     -moz-transition:.2s;
+  -o-transition:.2s;
+  -ms-transition:.2s;
+  -moz-transition:.2s;
   -webkit-transition:.2s;
-          transition:.2s;
+  transition:.2s;
 }
 
 .nav-sidebar > li > a {
@@ -116,15 +116,15 @@ a:hover {
 .collapse-trigger {
   color: rgba(255,255,255,0.87) !important;
   text-align: center;
-  width: 50px;     
+  width: 50px;
 }
 
 #in {
   -webkit-transform: rotate(180deg);
-     -moz-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-       -o-transform: rotate(180deg);
-          transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
   /* IE6–IE9 */
   filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9914448613738104, M12=-0.13052619222005157,M21=0.13052619222005157, M22=0.9914448613738104, sizingMethod='auto expand');
   zoom: 1;
@@ -161,7 +161,7 @@ a:hover {
   border: 0;
 }
 
- .jumbotron {
+.jumbotron {
   border: 1px solid #dddddd;
   margin-bottom: 0px;
 }
@@ -240,8 +240,8 @@ body {
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   padding: 10px;
   font-size: 16px;
 }
@@ -260,10 +260,10 @@ body {
 }
 
 #bg {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
@@ -404,11 +404,11 @@ table thead th.narrow {
   background-color: #eeeeee;
 }
 table.dataTable tbody tr td {
-    padding: 0px !important;
+  padding: 0px !important;
 }
 table.dataTable tbody tr td a {
-    display: block;
-    padding: 5px;
+  display: block;
+  padding: 5px;
 }
 
 /* ===== DATEPICKER ===== */
@@ -1197,4 +1197,48 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
   padding: 4px 5px;
 }
 
+/* BERICHTEN GEDEELTE LOGIPLEK */
 
+
+.contactButton
+{
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.25em;
+}
+#chatberichten
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 1000px;
+}
+#chatberichten > div
+{
+  position: relative;
+  padding: 20px;
+  max-width: 45%;
+  width: content-box;
+  height: content-box;
+}
+.chatberichtLinks
+{
+  left: 0px;
+  align-self: flex-start;
+  background-color: beige;
+  border-radius: 15px 50px 50px 5px;
+}
+.chatberichtRechts
+{
+  background-color: #def8c6;
+  right: 0px;
+  align-self: flex-end;
+  border-radius: 50px 15px 5px 50px;
+}
+
+#berichtInput{
+  min-width: 100%;
+}
+#sendButton{
+  background-color: lightgrey;
+}

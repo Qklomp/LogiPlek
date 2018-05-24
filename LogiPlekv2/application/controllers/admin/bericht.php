@@ -16,9 +16,7 @@ class Bericht extends MY_Controller
 
     public function index()
     {
-        $handle = fopen('D://login.txt', 'a');
         $data = $this->user_data();
-        fwrite($handle, print_r($data));
         $data['contacten'] = $this->bericht_model->get_contacten($data['id']);
 
         $data['js'] = array(
@@ -29,14 +27,15 @@ class Bericht extends MY_Controller
         $data['root'] = 'bericht';
         $data['main_content'] = 'admin/bericht/index';
 
-        fclose($handle);
-
         $this->load->view('admin/includes/template', $data);
     }
 
 
-    public function get_Chat(){
-
+    public function get_chat(){
+        $data = $this->user_data();
+        $data['contactId'] = $this->input->post('contactId');
+        $berichten = $this->bericht_model->get_berichten($data['id'], $data['contactId']);
+        echo json_encode($berichten);
     }
 
 

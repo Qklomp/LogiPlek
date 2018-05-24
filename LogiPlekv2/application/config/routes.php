@@ -183,6 +183,8 @@ $route['gebruiker/pw'] = 'admin/user/reset_password';
  */
 
 $route['bericht'] = '/admin/bericht';
+$route['bericht/get_chat'] = '/admin/bericht/get_chat';
+
 
 /*
  * -------------------------------------------------------------------------
