@@ -18,12 +18,12 @@
     <div class="panel-body">
         <!-- DELETE ALERT -->
         <div class="modal fade" id="deleteAlert" tabindex="-1" role="dialog" aria-labelledby="deleteAlert"
-             aria-hidden="true">
+                   aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <p>Weet je zeker dat je deze auto wilt verwijderen? </p>
+                        <p>Weet je zeker dat je deze emballage registratie wilt verwijderen? </p>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
                         <a href="" id="delete" type="button" class="btn btn-danger">Verwijderen</a>
                     </div>
@@ -98,4 +98,31 @@
                             class="glyphicon glyphicon-print"></i> Printen</a></li>
         </ul>
     </div>
+
+
 </div>
+
+<?php if ($this->session->userdata('functie_id') == 0) : ?>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <ul class="list-inline">
+                <li><h2>Emballage mee soorten</h2></li>
+                <li><a href="/emballage_mee/" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i> Beheren</a></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <ul class="list-inline">
+                <li><h2>Emballage retour soorten</h2></li>
+                <li><a href="/emballage_retour/" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i> Beheren</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+<?php endif;?>

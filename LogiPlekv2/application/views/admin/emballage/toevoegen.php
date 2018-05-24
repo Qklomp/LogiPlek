@@ -1,6 +1,12 @@
 <ol class="breadcrumb">
     <li><a href="/dashboard/"><i class="glyphicon glyphicon-home"></i> Logiplek</a></li>
-    <li class="active">Emballage/toevoegen/</li>
+    <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
+        <li><a href="/emballage"> Emballage </a></li>
+        <li class="active"> toevoegen </li>
+    <?php else: ?>
+        <li class="active"> Emballage registreren </li>
+    <?php endif; ?>
+
 </ol>
 
 <script src="<?php echo asset_url() ?>js/logiplek/emballage/toevoegen.js"></script>
@@ -63,6 +69,8 @@ echo form_open('emballage/toevoegen', $attributes)
         </div>
         <p id="errorKlantnummer"></p>
     </div>
+
+    <!--button -->
     <div class="container">
         <div class="row">
             <div class="mobileShow col-md-12" id="klantOmlaag" onclick="mobileToggle('klantOmlaag')"><i

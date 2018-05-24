@@ -196,6 +196,24 @@ $route['emballage/(:num)'] = 'admin/emballage/bekijken/$1';
 $route['emballage/verwijderen/(:num)'] = 'admin/emballage/verwijderen/$1';
 $route['emballage/bewerken/(:num)'] = 'admin/emballage/bewerken/$1';
 $route['emballage/printen'] = '/admin/emballage/printen';
+/*
+ * -------------------------------------------------------------------------
+ * EMBALLAGE_MEE
+ * -------------------------------------------------------------------------
+ */
+$route['emballage_mee'] = '/admin/emballage_mee';
+$route['emballage_mee/verwijderen/(:num)'] = 'admin/emballage_mee/verwijderen/$1';
+$route['emballage_mee/aanpassen'] = '/admin/emballage_mee/aanpassen';
+
+/*
+ * -------------------------------------------------------------------------
+ * EMBALLAGE_RETOUR
+ * -------------------------------------------------------------------------
+ */
+$route['emballage_retour'] = '/admin/emballage_retour';
+$route['emballage_retour/verwijderen/(:num)'] = 'admin/emballage_retour/verwijderen/$1';
+$route['emballage_retour/aanpassen'] = '/admin/emballage_retour/aanpassen';
+
 
 
 

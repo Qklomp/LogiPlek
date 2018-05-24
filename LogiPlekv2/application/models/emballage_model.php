@@ -195,5 +195,61 @@ class emballage_model extends CI_Model
         return $query->row_array();
     }
 
+    public function set_emballage_soorten_mee(){
+        $a = $this->input->post('emballage');
+        for ($i = 0; $i < count($a['emballage']); $i++)
+        {
+            if(isset($a['id'][$i]))
+            {
+                if($a['emballage'][$i] !== '')
+                {
+                    $this->db->update('emballage_mee', array('emballage' => ucfirst($a['emballage'][$i])), array('id' => $a['id'][$i]));
+                }
+                else
+                {
+                    $this->db->where('id', $a['id'][$i]);
+                    $this->db->delete('emballage_mee');
+                }
+            }
+            else if($a['emballage'][$i] !== '')
+            {
+                $this->db->insert('emballage_mee', array('emballage' => ucfirst($a['emballage'][$i])));
+            }
+        }
+    }
+
+    public function set_emballage_soorten_retour(){
+        $a = $this->input->post('emballage');
+        for ($i = 0; $i < count($a['emballage']); $i++)
+        {
+            if(isset($a['id'][$i]))
+            {
+                if($a['emballage'][$i] !== '')
+                {
+                    $this->db->update('emballage_retour', array('emballage' => ucfirst($a['emballage'][$i])), array('id' => $a['id'][$i]));
+                }
+                else
+                {
+                    $this->db->where('id', $a['id'][$i]);
+                    $this->db->delete('emballage_retour');
+                }
+            }
+            else if($a['emballage'][$i] !== '')
+            {
+                $this->db->insert('emballage_retour', array('emballage' => ucfirst($a['emballage'][$i])));
+            }
+        }
+    }
+
+    public function delete_emballage_soorten_retour($id){
+        $this->db->where('id', $id);
+        $this->db->delete('emballage_retour');
+    }
+    public function delete_emballage_soorten_mee($id){
+        $this->db->where('id', $id);
+        $this->db->delete('emballage_mee');
+    }
+
+
 
 }
