@@ -1197,4 +1197,48 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
   padding: 4px 5px;
 }
 
+/* BERICHTEN GEDEELTE LOGIPLEK */
 
+
+.contactButton
+{
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.25em;
+}
+#chatberichten
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 1000px;
+}
+#chatberichten > div
+{
+  position: relative;
+  padding: 20px;
+  max-width: 45%;
+  width: content-box;
+  height: content-box;
+}
+.chatberichtLinks
+{
+  left: 0px;
+  align-self: flex-start;
+  background-color: beige;
+  border-radius: 15px 50px 50px 5px;
+}
+.chatberichtRechts
+{
+  background-color: #def8c6;
+  right: 0px;
+  align-self: flex-end;
+  border-radius: 50px 15px 5px 50px;
+}
+
+#berichtInput{
+  min-width: 100%;
+}
+#sendButton{
+  background-color: lightgrey;
+}

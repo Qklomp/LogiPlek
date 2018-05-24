@@ -22,6 +22,7 @@ class bericht_model extends CI_Model
         $this->db->distinct();
         $query = $this->db->get();
         $array1 = $query->result_array();
+
         $this->db->select('ontvanger, voornaam, achternaam');
         $this->db->from('bericht');
         $this->db->where('afzender', $id);
@@ -29,6 +30,7 @@ class bericht_model extends CI_Model
         $this->db->distinct();
         $query = $this->db->get();
         $array2 = $query->result_array();
+
         $array_comb = array();
         foreach (array_merge($array1, $array2) as $key => $value) {
             if (key_exists('afzender', $value)) {
@@ -40,21 +42,29 @@ class bericht_model extends CI_Model
         return $array_comb;
     }
 
-    public function get_berichten($id){
-        $this->db->select('afzender, tekst');
+    public function get_berichten($id, $contactId){
+        $this->db->select('afzender, tekst, verstuurd_op');
         $this->db->from('bericht');
         $this->db->where('ontvanger', $id);
+        $this->db->where('afzender', $contactId);
         $this->db->join('bericht_tekst', 'bericht.inhoud = bericht_tekst.id');
         $query = $this->db->get();
         $array1 = $query->result_array();
-        $this->db->select('ontvanger, tekst');
+
+        $this->db->select('ontvanger, tekst, verstuurd_op');
         $this->db->from('bericht');
         $this->db->where('afzender', $id);
+        $this->db->where('ontvanger', $contactId);
         $this->db->join('bericht_tekst', 'bericht.inhoud = bericht_tekst.id');
         $query = $this->db->get();
         $array2 = $query->result_array();
 
         $array_comb = array_merge($array1, $array2);
+
+        function sortFunction( $a, $b ) {
+            return strtotime($a["verstuurd_op"]) - strtotime($b["verstuurd_op"]);
+        }
+        usort($array_comb, "sortFunction");
 
         return $array_comb;
     }
