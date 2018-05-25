@@ -35,6 +35,7 @@ class emballage extends MY_Controller
             'DataTable/media/js/jquery.dataTables.min',
             'logiplek/datatables',
             'logiplek/emballage/toevoegen'
+
         );
 
         $data['title'] = 'Emballage';
@@ -57,10 +58,20 @@ class emballage extends MY_Controller
         if (($this->session->flashdata('toegevoegd'))) {
             $data['toegevoegd'] = true;
         }
+
+        $data['js'] = array(
+            'parsley.min',
+            'bootstrap-datepicker.min',
+            'jquery.maskedinput.min',
+            'logiplek/forms',
+        );
+
+        
         $data['emballage_mee'] = $this->emballage_model->get_emballageMee();
         $data['emballage_retour'] = $this->emballage_model->get_emballageRetour();
 
         $this->load->library('form_validation');
+        $this->load->helper('date');
 
         $this->form_validation->set_rules('Klantnummer', 'Klantnummer', 'trim|required|numeric');
 
@@ -100,6 +111,13 @@ class emballage extends MY_Controller
         $data['emballage_retour'] = $this->emballage_model->get_emballageRetour();
         $data['emballage_emballagemee'] = $this->emballage_model->get_emballage_emballageMee($id);
         $data['emballage_emballageretour'] = $this->emballage_model->get_emballage_emballageRetour($id);
+
+        $data['js'] = array(
+            'parsley.min',
+            'bootstrap-datepicker.min',
+            'jquery.maskedinput.min',
+            'logiplek/forms',
+        );
 
         $data['title'] = 'emballage';
         $data['root'] = 'emballage';

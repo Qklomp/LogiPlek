@@ -39,6 +39,7 @@
                 <th width="10%">Gereden door</th>
                 <th>Emballage mee</th>
                 <th>Emballage retour</th>
+                <th>Toegevoegd op</th>
                 <th class="narrow text-center"></th>
                 <th class="narrow text-center"></th>
             </tr>
@@ -75,6 +76,9 @@
                             <?php endif ?>
                         <?php endforeach ?>
                     </td>
+                    <td>
+                        <a href="/emballage/<?php echo $emballages['id'] ?>"> <?php echo $emballages['toegevoegd_op'] ?></a>
+                    </td>
                     <td class="text-center"><a href="/emballage/<?php echo $emballages['id'] ?>"
                                                data-id="<?php echo $emballages['id'] ?>"><i
                                     class="glyphicon glyphicon-search"></i> </a>
@@ -85,6 +89,7 @@
                                                data-toggle="modal" data-target="#deleteAlert"><i
                                     class="glyphicon glyphicon-trash"></i></a></td>
                 </tr>
+
             <?php endforeach ?>
             </tbody>
         </table>

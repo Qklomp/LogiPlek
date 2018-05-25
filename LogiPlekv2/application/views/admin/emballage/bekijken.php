@@ -16,7 +16,6 @@ echo form_open('emballage/bewerken/'. $emballage['id'], $attributes)
                 <li><h2><?php echo "Info" ?></h2></li>
             </ul>
         </div>
-
         <br>
 
         <div>
@@ -40,6 +39,12 @@ echo form_open('emballage/bewerken/'. $emballage['id'], $attributes)
                 <option value="999">Bus</option>
                 <option value="998">Vrachtwagen</option>
             </select>
+        </div>
+
+        <label for="Toegevoegd op" class="control-label">Toegevoegd op </label>
+        <div class="input-group">
+            <span class="input-group-addon input-sm"><i class="glyphicon glyphicon-calendar"></i></span>
+            <input type="text" class="form-control input-sm datepicker" name="Toegevoegd_op" placeholder="Toegevoegd op" value="<?php echo $emballage['toegevoegd_op']?>">
         </div>
 
         <h3>Emballage mee</h3>

@@ -2,9 +2,9 @@
     <li><a href="/dashboard/"><i class="glyphicon glyphicon-home"></i> Logiplek</a></li>
     <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
         <li><a href="/emballage"> Emballage </a></li>
-        <li class="active"> toevoegen </li>
+        <li class="active"> toevoegen</li>
     <?php else: ?>
-        <li class="active"> Emballage registreren </li>
+        <li class="active"> Emballage registreren</li>
     <?php endif; ?>
 
 </ol>
@@ -69,7 +69,20 @@ echo form_open('emballage/toevoegen', $attributes)
         </div>
         <p id="errorKlantnummer"></p>
     </div>
-
+    <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
+        <div class="container " id="Ingevoerd_op">
+            <div class="row">
+                <div class="col-md-6">Toegevoegd op</div>
+                <div class="input-group col-md-6">
+                    <span class="input-group-addon input-sm"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input type="text" class="form-control input-sm datepicker" name="Toegevoegd_op"
+                           placeholder="Toegevoegd op" value="<?php $newDate = date("d-m-Y", NOW());
+                    echo $newDate ?>">
+                </div>
+            </div>
+        </div>
+        <br>
+    <?php endif; ?>
     <!--button -->
     <div class="container">
         <div class="row">
@@ -93,9 +106,10 @@ echo form_open('emballage/toevoegen', $attributes)
         <?php foreach ($emballage_mee as $emballage): ?>
             <?php $tempName = str_replace(' ', '', $emballage["emballage"]) ?>
             <div class="row">
-                <div class="col-md-6"> <?php echo $emballage["emballage"]?></div>
+                <div class="col-md-6"> <?php echo $emballage["emballage"] ?></div>
                 <div class="col-md-6">
-                    <input class="form-control" name="<?php echo $tempName?>_mee" id="<?php echo $emballage["emballage"]?>mee" onchange="Toggle()"
+                    <input class="form-control" name="<?php echo $tempName ?>_mee"
+                           id="<?php echo $emballage["emballage"] ?>mee" onchange="Toggle()"
                            type="number" min="0" value="0">
                 </div>
 
@@ -129,9 +143,10 @@ echo form_open('emballage/toevoegen', $attributes)
         <?php foreach ($emballage_retour as $emballage): ?>
             <?php $tempName = str_replace(' ', '', $emballage["emballage"]) ?>
             <div class="row">
-                <div class="col-md-6"> <?php echo $emballage["emballage"]?></div>
+                <div class="col-md-6"> <?php echo $emballage["emballage"] ?></div>
                 <div class="col-md-6">
-                    <input class="form-control" name="<?php echo $tempName?>_retour" id="<?php echo $emballage["emballage"]?>retour" onchange="Toggle()"
+                    <input class="form-control" name="<?php echo $tempName ?>_retour"
+                           id="<?php echo $emballage["emballage"] ?>retour" onchange="Toggle()"
                            type="number" min="0" value="0">
                 </div>
             </div>
@@ -140,28 +155,28 @@ echo form_open('emballage/toevoegen', $attributes)
         <?php endforeach ?>
 
 
-    <div class="container">
-        <div class="row">
-            <div class="mobileShow col-md-12" style="display: none;" id="emballageRetourOmhoog"
-                 onclick="mobileToggle('emballageRetourOmhoog')"><i class="fa fa-chevron-up"></i> Terug
+        <div class="container">
+            <div class="row">
+                <div class="mobileShow col-md-12" style="display: none;" id="emballageRetourOmhoog"
+                     onclick="mobileToggle('emballageRetourOmhoog')"><i class="fa fa-chevron-up"></i> Terug
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="container" style="display: none;" id="verzendButton">
-        <hr>
+        <div class="container" style="display: none;" id="verzendButton">
+            <hr>
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-md-12">
-                <button class="btn">Verzenden</button>
+                <div class="col-md-12">
+                    <button class="btn">Verzenden</button>
+                </div>
             </div>
         </div>
+
+
+        </form>
+        <br>
+        <br>
     </div>
-
-
-    </form>
-    <br>
-    <br>
-</div>

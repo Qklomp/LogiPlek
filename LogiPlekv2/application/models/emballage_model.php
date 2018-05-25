@@ -21,12 +21,17 @@ class emballage_model extends CI_Model
         $emballageMeeArray = $this->arrayConv($this->get_emballageMee());
         $emballageRetourArray = $this->arrayConv($this->get_emballageRetour());
 
+        $originalDate = $this->input->post('Toegevoegd_op');
+        $newDate = date("Y-m-d", strtotime($originalDate));
+
         /* Emballage*/
         $data = array(
             'klantnummer' => $this->input->post('Klantnummer'),
             'vrachtwagen' => $this->input->post('Vrachtwagen'),
-            'toegevoegd_door' => $user
+            'toegevoegd_door' => $user,
+            'toegevoegd_op' => $newDate
         );
+       
         $this->db->insert('emballage', $data);
         $id = $this->db->insert_id();
 
@@ -62,12 +67,17 @@ class emballage_model extends CI_Model
         $emballageMeeArray = $this->arrayConv($this->get_emballageMee());
         $emballageRetourArray = $this->arrayConv($this->get_emballageRetour());
 
+
+        $originalDate = $this->input->post('Toegevoegd_op');
+        $newDate = date("Y-m-d", strtotime($originalDate));
         /* Emballage */
         $data = array(
             'klantnummer' => $this->input->post('klantnummer'),
             'vrachtwagen' => $this->input->post('Vrachtwagen'),
-            'toegevoegd_door' => $user
+            'toegevoegd_door' => $user,
+            'toegevoegd_op' => $newDate
         );
+
         $this->db->where('id', $id);
         $this->db->update('emballage', $data);
 
