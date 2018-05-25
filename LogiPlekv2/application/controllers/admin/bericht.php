@@ -1,11 +1,11 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
 /**
  * Created by PhpStorm.
  * User: Jeroen Hoegen
  * Date: 3-5-2018
  * Time: 10:43
  */
-
 class Bericht extends MY_Controller
 {
     public function __construct()
@@ -31,11 +31,18 @@ class Bericht extends MY_Controller
     }
 
 
-    public function get_chat(){
+    public function get_chat()
+    {
         $data = $this->user_data();
         $data['contactId'] = $this->input->post('contactId');
         $berichten = $this->bericht_model->get_berichten($data['id'], $data['contactId']);
         echo json_encode($berichten);
+    }
+
+    public function verstuur_bericht()
+    {
+        $this->bericht_model->verstuur_bericht();
+        return true;
     }
 
 

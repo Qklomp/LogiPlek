@@ -68,4 +68,22 @@ class bericht_model extends CI_Model
 
         return $array_comb;
     }
+
+    public function verstuur_bericht()
+    {
+        $data = array(
+            'tekst' => $this->input->post('bericht')
+        );
+        $this->db->insert('bericht_tekst', $data);
+        $id = $this->db->insert_id();
+
+        $data = array(
+            'afzender' => $this->session->userdata('id'),
+            'ontvanger' => $this->input->post('contactId'),
+            'status' => 2,
+            'inhoud' => $id,
+            'verstuurd_op' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('bericht', $data);
+    }
 }
