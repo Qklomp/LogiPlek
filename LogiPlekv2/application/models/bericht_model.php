@@ -75,6 +75,15 @@ class bericht_model extends CI_Model
         return $array_comb;
     }
 
+    public function get_ongelezen_berichten($id){
+        $this->db->select('id');
+        $this->db->from('bericht');
+        $this->db->where('ontvanger', $id);
+        $this->db->where('status', '0');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 
 
     public function verstuur_bericht()
