@@ -66,6 +66,12 @@ class bericht_model extends CI_Model
         }
         usort($array_comb, "sortFunction");
 
+        /*- bericht refresh tabel updaten -*/
+
+        $this->db->set('status', '0');
+        $this->db->where('personeel_id', $id);
+        $this->db->update('bericht_refresh');
+
         return $array_comb;
     }
 
@@ -80,10 +86,51 @@ class bericht_model extends CI_Model
         $data = array(
             'afzender' => $this->session->userdata('id'),
             'ontvanger' => $this->input->post('contactId'),
-            'status' => 2,
+            'status' => 0,
             'inhoud' => $id,
             'verstuurd_op' => date('Y-m-d H:i:s')
         );
         $this->db->insert('bericht', $data);
+
+        /*- bericht refresh tabel updaten -*/
+
+        $this->db->set('status', '1');
+        $this->db->where('personeel_id', $this->input->post('contactId'));
+        $this->db->update('bericht_refresh');
+
+        if($this->db->affected_rows() === 0)
+        {
+            $data = array(
+                'personeel_id' => $this->input->post('contactId'),
+                'status' => '1'
+            );
+            $this->db->insert('bericht_refresh', $data);
+        }
+    }
+
+    public function refreshCheck($id)
+    {
+        $this->db->select('status');
+        $this->db->from('bericht_refresh');
+        $this->db->where('personeel_id', $id);
+
+        $query = $this->db->get();
+        $result = $query->row_array();
+
+        return $result;
+    }
+
+    public function contactSearch($searchValue)
+    {
+        $this->db->select('id, voornaam, achternaam');
+        $this->db->from('personeel');
+        $this->db->like('voornaam', $searchValue, 'both');
+        $this->db->or_like('achternaam', $searchValue, 'both');
+        $this->db->limit(10);
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        return $result;
     }
 }

@@ -12,27 +12,36 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-4" style="min-height: 1000px">
-                <ul class="list-group">
-                    <?php foreach ($contacten as $key => $value): ?>
-                        <li class="contactButton list-group-item">
-                            <input type="hidden" id="contactID" value="<?php echo $key; ?>"> <?php echo $value?>
-                        </li>
-                        <hr>
-                    <?php endforeach ?>
-                </ul>
+            <div class="col-md-4 col-sm-12 container" id="contactContainer">
+                <div class="row">
+                    <input type="text" id="someId" class="form-control" placeholder="..."/>
+                </div>
+                <div class="row" style="display: none;" id="ContactListSearch">
+                    <ul class="list-group" id="searchList">
+
+                    </ul>
+                </div>
+                <div class="row" style="display: block" id="ContactList">
+                    <ul class="list-group">
+                        <?php foreach ($contacten as $key => $value): ?>
+                            <li class="contactButton list-group-item">
+                                <input type="hidden" id="contactID" value="<?php echo $key; ?>"> <?php echo $value ?>
+                            </li>
+                            <hr>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-8 container" style="min-height: 1000px">
-                <div id="chatberichten">
+            <div class="col-md-8 col-sm-12 container" style="display: none;" id="chatRightColumn">
+                <div id="contactNaam" class="row">
+                    &nbsp;
+                </div>
+                <div id="chatberichten" class="row">
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-10">
-                        <input id="berichtInput" placeholder="Bericht" value="">
-                    </div>
-                    <div class="col-lg-2">
-                        <button id="sendButton" class="fa fa-send-o" style="font-size:36px"></button>
-                    </div>
+                    <input id="berichtInput" placeholder="Bericht" value="">
+                    <input type="button" id="sendButton" class="btn btn-primary" value="Send"/>
                 </div>
             </div>
         </div>
@@ -41,28 +50,95 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
 <script>
-    $(document).ready(function(){
-        $('.contactButton').on('click',function (e){
+    var timerId, contactId, searchValue;
+
+    $(document).ready(function () {
+        $('.contactButton').on('click', function (e) {
             contactId = e.target.childNodes[1].value;
-            getChatHistory(contactId);
+            $('#contactNaam').html(e.target.childNodes[2].nodeValue);
+            openChat();
         });
 
+        $('#someId').on('input', function (e) {
+            searchValue = e.target.value;
+            someFunction();
+        });
 
-        $('#sendButton').on('click',function (e){
-            console.log(contactId);
+        $('#sendButton').on('click', function () {
             $.ajax({
                 url: "<?php echo base_url();?>bericht/verstuur_bericht",
                 dataType: 'text',
                 type: "POST",
                 data: {contactId: contactId, bericht: $('#berichtInput').val()},
-                success: function (result) {
+                success: function () {
                     getChatHistory(contactId);
                 }
             })
         });
     });
-    function getChatHistory(contactId)
+
+    function openChat()
     {
+        $('#chatRightColumn').show();
+        getChatHistory(contactId);
+        clearTimeout(timerId);
+        timerId = setTimeout(autoRefresh, 2000);
+
+    }
+
+    function someFunction() {
+        if (searchValue != '') {
+            $('#ContactListSearch').show();
+            $('#ContactList').hide();
+            contactSearch();
+        }
+        else {
+            $('#ContactListSearch').hide();
+            $('#ContactList').show();
+        }
+    }
+
+    function contactSearch() {
+        $.ajax({
+            url: "<?php echo base_url();?>bericht/contactSearch",
+            dataType: 'text',
+            type: "POST",
+            data: {searchValue: searchValue},
+            success: function (result) {
+                $('#searchList').empty();
+                var obj = $.parseJSON(result);
+                $.each(obj, function (index, object) {
+                    $('#searchList').append(
+                        '<li class="contactSearchButton list-group-item">' +
+                        '<input type="hidden" id="contactID" value="'+ object['id'] +'"> '+ object['voornaam'] + ' ' + object['achternaam'] +
+                        '</li>'
+                    );
+                });
+                $('.contactSearchButton').on('click', function (e) {
+                    contactId = e.target.childNodes[0].value;
+                    $('#contactNaam').html(e.target.childNodes[1].nodeValue);
+                    openChat();
+                });
+            }
+        });
+    }
+
+    function autoRefresh() {
+        $.ajax({
+            url: "<?php echo base_url();?>bericht/refreshCheck",
+            dataType: 'text',
+            type: "POST",
+            success: function (result) {
+                var obj = $.parseJSON(result);
+                if (obj['status'] === "1") {
+                    getChatHistory(contactId)
+                }
+            }
+        });
+        timerId = setTimeout(autoRefresh, 2000);
+    }
+
+    function getChatHistory(contactId) {
         $("#chatberichten").empty();
         document.getElementById('berichtInput').value = '';
         $.ajax({
@@ -73,33 +149,32 @@
             success: function (result) {
                 var obj = $.parseJSON(result);
                 var currentDate = '';
-                $.each(obj,function(index, object) {
+                $.each(obj, function (index, object) {
                     var newDate = getCorrectDate(object['verstuurd_op']);
-                    if(currentDate !== newDate)
-                    {
+                    if (currentDate !== newDate) {
                         $('#chatberichten').append(
                             '<span class="chatberichtDate">' + newDate + '</span>'
                         );
                     }
-                    if('ontvanger' in object)
-                    {
+                    if ('ontvanger' in object) {
                         $('#chatberichten').append(
                             '<div class="chatberichtRechts">' + object['tekst'] + '</div>'
                         );
                     }
-                    else
-                    {
+                    else {
                         $('#chatberichten').append(
                             '<div class="chatberichtLinks">' + object['tekst'] + '</div>'
                         );
                     }
                     currentDate = newDate;
                 });
+                var element = document.getElementById("chatberichten");
+                element.scrollTop = element.scrollHeight;
             }
         })
     }
-    function getCorrectDate(badDate)
-    {
+
+    function getCorrectDate(badDate) {
         var temp = new Date(badDate);
         var day = temp.getDate();
         var month = temp.getMonth() + 1;

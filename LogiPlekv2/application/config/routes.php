@@ -185,6 +185,8 @@ $route['gebruiker/pw'] = 'admin/user/reset_password';
 $route['bericht'] = '/admin/bericht';
 $route['bericht/get_chat'] = '/admin/bericht/get_chat';
 $route['bericht/verstuur_bericht'] = '/admin/bericht/verstuur_bericht';
+$route['bericht/refreshCheck'] = '/admin/bericht/refreshCheck';
+$route['bericht/contactSearch'] = '/admin/bericht/contactSearch';
 
 
 /*
