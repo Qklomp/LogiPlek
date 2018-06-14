@@ -45,5 +45,16 @@ class Bericht extends MY_Controller
         return true;
     }
 
+    public function refreshCheck()
+    {
+        $data = $this->user_data();
+        echo json_encode($this->bericht_model->refreshCheck($data['id']));
+    }
 
+    public function contactSearch()
+    {
+        $searchValue = $this->input->post('searchValue');
+        $contacten = $this->bericht_model->contactSearch($searchValue);
+        echo json_encode($contacten);
+    }
 }
