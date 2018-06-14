@@ -84,6 +84,18 @@
 <div class="col-lg-4">
     <div class="panel panel-default">
         <div class="panel-heading">
+            <h3>Berichten</h3>
+        </div>
+
+        <div class="panel-footer">
+
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
             <h3>Updates</h3>
         </div>
         <div class="panel-body">

@@ -53,7 +53,7 @@
                     </ul>
                 </li>
             </ul>
-            <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
+            <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
                 <div class="col-sm-4 col-md-3 navbar-right search-form">
                     <?php
                     $attributes = array('class' => 'navbar-form parsley');
@@ -90,7 +90,7 @@
                 <li <?php echo ($root === "Dashboard") ? 'class="active"' : '' ?>><a href="/dashboard/"><i
                                 class="glyphicon glyphicon-th"></i><span class="nav-span">Dashboard</span></a></li>
                 <hr>
-                <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
+                <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
                     <li <?php echo ($root === "Brandstof") ? 'class="active"' : '' ?>><a href="/brandstof/"><i
                                     class="fa fa-tint"></i><span class="nav-span">Brandstof</span></a></li>
                     <!-- <li <?php echo ($root === "Onderhoud") ? 'class="active"' : '' ?>><a href="/onderhoud/"><i class="fa fa-wrench"></i><span class="nav-span">Onderhoud</span></a></li> -->
@@ -102,7 +102,7 @@
                                     class="nav-span">Emballage</span></a></li>
               
                     <!-- Checks if user is admin-->
-                    <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
+                    <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
                         <hr>
                         <li <?php echo ($root === "Auto's") ? 'class="active"' : '' ?>><a href="/autos/"><i
                                         class="fa fa-truck"></i><span class="nav-span">Auto's</span></a></li>
@@ -128,7 +128,7 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
+                <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
                 <hr>
                 <li><a href="/bericht"><i class="fa fa-inbox"></i><span
                             class="nav-span">Berichten (<?php echo count($this->bericht_model->get_ongelezen_berichten($this->session->userdata['id']))?>)</span></a></li>
