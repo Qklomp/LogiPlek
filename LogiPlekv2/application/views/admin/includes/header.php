@@ -122,7 +122,7 @@
                 <?php if ($this->session->userdata('functie_id') == 1 || $this->session->userdata('functie_id') == 2) : ?>
                     <li <?php echo ($root === "bericht") ? 'class="active"' : '' ?>><a href="/bericht"><i
                                     class="fa fa-inbox" aria-hidden="true"></i><span
-                                    class="nav-span">Berichten</span></a></li>
+                                    class="nav-span">Berichten (<?php echo count($this->bericht_model->get_ongelezen_berichten($this->session->userdata['id'])); ?>)</span></a></li>
                     <li <?php echo ($root === "emballage") ? 'class="active"' : '' ?>><a href="/emballage/toevoegen"><i
                                     class="fa fa-truck" aria-hidden="true"></i><span class="nav-span">Emballage registratie</span></a>
                     </li>
@@ -131,7 +131,7 @@
                 <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
                 <hr>
                 <li><a href="/bericht"><i class="fa fa-inbox"></i><span
-                            class="nav-span">Berichten</span></a></li>
+                            class="nav-span">Berichten (<?php echo count($this->bericht_model->get_ongelezen_berichten($this->session->userdata['id']))?>)</span></a></li>
                 <li><a href="http://webmail.distrivers.nl" target="_blank"><i class="fa fa-envelope"></i><span
                                 class="nav-span">Webmail</span></a></li>
                 <li><a href="http://www.gps-buddy.com/login" target="_blank"><i class="fa fa-crosshairs"></i><span

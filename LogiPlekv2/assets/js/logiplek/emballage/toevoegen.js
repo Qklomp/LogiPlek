@@ -49,9 +49,9 @@ function mobileToggle(object) {
             //input
 
 
-            if(validation("vrachtwagen")){
+            if (validation("vrachtwagen")) {
                 console.log("Vrachtwagen gedaan")
-                if(validation("klantnummer")){
+                if (validation("klantnummer")) {
                     document.getElementById("vrachtwagen").style.display = "none";
                     document.getElementById("klantnummer").style.display = "none";
                     document.getElementById("emballageMee").style.display = "inline-block";
@@ -84,7 +84,7 @@ function mobileToggle(object) {
         case 'emballageMeeOmlaag':
             //input
 
-            if(validation("emballageMee")){
+            if (validation("emballageMee")) {
                 document.getElementById("vrachtwagen").style.display = "none";
                 document.getElementById("klantnummer").style.display = "none";
                 document.getElementById("emballageMee").style.display = "none";
@@ -117,28 +117,28 @@ function mobileToggle(object) {
 
 }
 
-function validation(naam){
+function validation(naam) {
     var container = document.getElementById(naam);
     var elements = Array.prototype.slice.call(container.getElementsByTagName('input'));
     var selectthingy = Array.prototype.slice.call(container.getElementsByTagName('select'));
 
     console.log(selectthingy);
-    if(typeof selectthingy != 'undefined'){
-        if(selectthingy.selectedIndex === 0){
+    if (typeof selectthingy != 'undefined') {
+        if (selectthingy.selectedIndex === 0) {
             console.log('dgfhfhf');
             document.getElementById("errorVrachtwagen").innerHTML = "Welke vrachtwagen rij jij? Er moet wel eentje geselecteerd worden!";
             return false;
-        }else{
+        } else {
             return true;
         }
     }
     console.log(elements.length);
-    if(elements.length !== 0){
-        elements.forEach(function(element){
+    if (elements.length !== 0) {
+        elements.forEach(function (element) {
             console.log(element.id);
-            if(element.value !== "0")   {
-                 return true;
-            }else{
+            if (element.value !== "0") {
+                return true;
+            } else {
                 document.getElementById("error" + element.id);
                 document.getElementById("error" + element.id).innerHTML = "GRAFTAK!";
                 return false;
@@ -147,3 +147,63 @@ function validation(naam){
     }
 }
 
+function maak_vrachtwagen_cookie(functie_id) {
+    console.log("functie id:")
+    console.log(functie_id);
+    if(functie_id != 0 && functie_id !=3){
+        var today = new Date();
+        var expiry = new Date(today.getTime() + 12 * 3600 * 1000);
+        var value = document.getElementById("Vrachtwagen").selectedIndex;
+        var name = "VrachtwagenSelectedIndex";
+        console.log(name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString());
+        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+        var name = "VrachtwagenValue";
+        var value = document.getElementById("Vrachtwagen").value;
+        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+    }
+}
+
+function doSomething() {
+    var myCookieValue = getCookie("VrachtwagenValue");
+    var myCoockieSelectedIndex = getCookie("VrachtwagenSelectedIndex");
+    console.log(myCoockieSelectedIndex);
+    console.log(myCookieValue);
+    if (myCoockieSelectedIndex == null) {
+        // do cookie doesn't exist stuff;
+    }
+    else {
+        // do cookie exists stuff
+        document.getElementById("Vrachtwagen").selectedIndex = myCoockieSelectedIndex;
+        var isErNog = false;
+        for (var i = 0; i < document.getElementById("Vrachtwagen").options.length; i++) {
+            if (document.getElementById("Vrachtwagen").options[i].value === myCookieValue) {
+                isErNog = true;
+                document.getElementById("Vrachtwagen").selectedIndex = i;
+                break;
+            } else {
+            }
+        }
+    }
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+$(document).ready(function () {
+    console.log("MyCookie");
+    doSomething();
+
+});

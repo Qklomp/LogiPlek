@@ -16,7 +16,10 @@ class emballage_model extends CI_Model
 
     public function toevoegen_emballage()
     {
-
+        $handle = fopen('D://login.txt', 'a');
+        fwrite($handle, "Controller \r\n");
+        fwrite($handle, $this->session->userdata('voornaam'));
+        fclose($handle);
         $user = $this->session->userdata('voornaam') . ' ' . $this->session->userdata('achternaam');
         $emballageMeeArray = $this->arrayConv($this->get_emballageMee());
         $emballageRetourArray = $this->arrayConv($this->get_emballageRetour());
@@ -31,7 +34,7 @@ class emballage_model extends CI_Model
             'toegevoegd_door' => $user,
             'toegevoegd_op' => $newDate
         );
-       
+
         $this->db->insert('emballage', $data);
         $id = $this->db->insert_id();
 

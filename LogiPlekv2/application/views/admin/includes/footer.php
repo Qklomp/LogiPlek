@@ -7,9 +7,7 @@
     <!-- END CONTAINER -->
     </div>
 
-    <div id="footer">
-       <span class="muted credit pull-right">&copy 2018 Jeroen Hoegen & Quincy Klomp</a></span>
-    </div>
+
 
     <!-- SCRIPTS -->
     <script src="<?php echo asset_url() ?>js/jquery.min.js"></script> 

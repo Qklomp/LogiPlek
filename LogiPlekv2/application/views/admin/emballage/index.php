@@ -36,10 +36,10 @@
             <tr>
                 <th>Klantnummer</th>
                 <th>Kenteken</th>
-                <th width="10%">Gereden door</th>
+                <th width="15%">Gereden door</th>
                 <th>Emballage mee</th>
                 <th>Emballage retour</th>
-                <th>Toegevoegd op</th>
+                <th width="5%">Toegevoegd op</th>
                 <th class="narrow text-center"></th>
                 <th class="narrow text-center"></th>
             </tr>

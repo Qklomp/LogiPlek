@@ -9,12 +9,13 @@
 
 </ol>
 
-<script src="<?php echo asset_url() ?>js/logiplek/emballage/toevoegen.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <?php echo (isset($toegevoegd)) ? '<div class="alert alert-dismissable alert-success"><button type="button" class="close" data-dismiss="alert">×</button>De gegevens zijn toegevoegd!</div>' : '' ?>
 
 <?php
-$attributes = array('class' => 'form-horizontal parsley');
-echo form_open('emballage/toevoegen', $attributes)
+$attributes = array('class' => 'form-horizontal parsley','id '=>'form','onsubmit' =>'maak_vrachtwagen_cookie('.($this->session->userdata('functie_id')).')' , 'onload' =>'doSomething' );
+echo form_open('emballage/controleren', $attributes)
 ?>
 <div class="panel panel-default">
 
@@ -23,6 +24,7 @@ echo form_open('emballage/toevoegen', $attributes)
             <li><h2><?php echo $title ?> registreren</h2></li>
         </ul>
     </div>
+
     <br>
 
     <!-- Vrachtwagen kenteken selecteren -->

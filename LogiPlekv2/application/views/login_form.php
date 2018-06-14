@@ -31,7 +31,7 @@
 
 </head>
 <body>
-<!--<img src="<?php echo asset_url() ?>img/distr/header_1.jpg" id="bg" alt="">-->
+<img src="<?php echo asset_url() ?>img/distr/header_1.jpg" id="bg" alt="">
 
 <div class="container">
 

@@ -16,7 +16,7 @@ class Dashboard extends MY_Controller {
   public function index()
   {
     $data = $this->user_data();
-
+;
     $data['autos'] = $this->autos_model->get_autos();
     $data['koeriers'] = $this->koeriers_model->get_koeriers();
     $data['personeel'] = $this->personeel_model->get_personeel();

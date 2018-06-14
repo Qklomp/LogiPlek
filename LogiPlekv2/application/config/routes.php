@@ -199,6 +199,7 @@ $route['emballage/(:num)'] = 'admin/emballage/bekijken/$1';
 $route['emballage/verwijderen/(:num)'] = 'admin/emballage/verwijderen/$1';
 $route['emballage/bewerken/(:num)'] = 'admin/emballage/bewerken/$1';
 $route['emballage/printen'] = '/admin/emballage/printen';
+
 /*
  * -------------------------------------------------------------------------
  * EMBALLAGE_MEE

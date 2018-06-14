@@ -69,6 +69,8 @@ class bericht_model extends CI_Model
         return $array_comb;
     }
 
+
+
     public function verstuur_bericht()
     {
         $data = array(

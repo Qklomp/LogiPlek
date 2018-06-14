@@ -17,7 +17,13 @@
                     <ul class="list-inline">
                         <li><a href="/bericht/"><h3><i class="fa fa-inbox" aria-hidden="true"></i> Berichten</h3></a></li>
                         <br>
-                        <li>Je hebt ___ ongelezen berichten</li>
+                        <li><?php if(count($this->bericht_model->get_ongelezen_berichten($this->session->userdata['id'])) === 0){
+                            echo "U heeft geen nieuwe berichten";
+                            }else if(count($this->bericht_model->get_ongelezen_berichten($this->session->userdata['id'])) === 1){
+                            echo "U heeft 1 ongelezen bericht";
+                            }else{
+                            echo "U heeft ".count($this->bericht_model->get_ongelezen_berichten($this->session->userdata['id']))." ongelezen berichten";
+                            }?></li>
                     </ul>
                 </div>
             </div>
