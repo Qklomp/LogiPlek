@@ -18,6 +18,7 @@ class bericht_model extends CI_Model
         $this->db->select('afzender, voornaam, achternaam');
         $this->db->from('bericht');
         $this->db->where('ontvanger', $id);
+        $this->db->where('status_id', '1');
         $this->db->join('personeel', 'bericht.afzender = personeel.id');
         $this->db->distinct();
         $query = $this->db->get();
@@ -26,6 +27,7 @@ class bericht_model extends CI_Model
         $this->db->select('ontvanger, voornaam, achternaam');
         $this->db->from('bericht');
         $this->db->where('afzender', $id);
+        $this->db->where('status_id', '1');
         $this->db->join('personeel', 'bericht.ontvanger = personeel.id');
         $this->db->distinct();
         $query = $this->db->get();
@@ -66,11 +68,35 @@ class bericht_model extends CI_Model
         }
         usort($array_comb, "sortFunction");
 
+        /*- berichten op gelezen zetten -*/
+
+        $this->db->set('status', '1');
+        $this->db->set('gelezen_op', date('Y-m-d H:i:s'));
+        $this->db->where('status', '0');
+        $this->db->where('ontvanger', $id);
+        $this->db->update('bericht');
+
         /*- bericht refresh tabel updaten -*/
 
-        $this->db->set('status', '0');
+        $this->db->select('status');
+        $this->db->from('bericht_refresh');
         $this->db->where('personeel_id', $id);
-        $this->db->update('bericht_refresh');
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+        {
+            $this->db->set('status', '0');
+            $this->db->where('personeel_id', $id);
+            $this->db->update('bericht_refresh');
+        }
+        else
+        {
+            $data = array(
+                'personeel_id' => $id,
+                'status' => '0'
+            );
+            $this->db->insert('bericht_refresh', $data);
+        }
 
         return $array_comb;
     }
@@ -83,8 +109,6 @@ class bericht_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
-
-
 
     public function verstuur_bericht()
     {
@@ -105,15 +129,22 @@ class bericht_model extends CI_Model
 
         /*- bericht refresh tabel updaten -*/
 
-        $this->db->set('status', '1');
+        $this->db->select('status');
+        $this->db->from('bericht_refresh');
         $this->db->where('personeel_id', $this->input->post('contactId'));
-        $this->db->update('bericht_refresh');
+        $query = $this->db->get();
 
-        if($this->db->affected_rows() === 0)
+        if($query->num_rows() > 0)
+        {
+            $this->db->set('status', '1');
+            $this->db->where('personeel_id', $this->input->post('contactId'));
+            $this->db->update('bericht_refresh');
+        }
+        else
         {
             $data = array(
                 'personeel_id' => $this->input->post('contactId'),
-                'status' => '1'
+                'status' => '0'
             );
             $this->db->insert('bericht_refresh', $data);
         }
@@ -137,6 +168,7 @@ class bericht_model extends CI_Model
         $this->db->from('personeel');
         $this->db->like('voornaam', $searchValue, 'both');
         $this->db->or_like('achternaam', $searchValue, 'both');
+        $this->db->where('status_id', '1');
         $this->db->limit(10);
 
         $query = $this->db->get();

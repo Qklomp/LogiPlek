@@ -14,21 +14,15 @@
         <div class="row">
             <div class="col-md-4 col-sm-12 container" id="contactContainer">
                 <div class="row">
-                    <input type="text" id="someId" class="form-control" placeholder="..."/>
+                    <input type="text" id="searchInput" class="form-control" placeholder="..."/>
                 </div>
-                <div class="row" style="display: none;" id="ContactListSearch">
+                <div class="row" style="display: none;" id="ContactSearchDiv">
                     <ul class="list-group" id="searchList">
 
                     </ul>
                 </div>
-                <div class="row" style="display: block" id="ContactList">
-                    <ul class="list-group">
-                        <?php foreach ($contacten as $key => $value): ?>
-                            <li class="contactButton list-group-item">
-                                <input type="hidden" id="contactID" value="<?php echo $key; ?>"> <?php echo $value ?>
-                            </li>
-                            <hr>
-                        <?php endforeach ?>
+                <div class="row" style="display: block" id="ContactDiv">
+                    <ul class="list-group" id="ContactList">
                     </ul>
                 </div>
             </div>
@@ -53,15 +47,9 @@
     var timerId, contactId, searchValue;
 
     $(document).ready(function () {
-        $('.contactButton').on('click', function (e) {
-            contactId = e.target.childNodes[1].value;
-            $('#contactNaam').html(e.target.childNodes[2].nodeValue);
-            openChat();
-        });
-
-        $('#someId').on('input', function (e) {
+        $('#searchInput').on('input', function (e) {
             searchValue = e.target.value;
-            someFunction();
+            searchCheck();
         });
 
         $('#sendButton').on('click', function () {
@@ -75,6 +63,28 @@
                 }
             })
         });
+
+        $.ajax({
+            url: "<?php echo base_url();?>bericht/get_contacten",
+            dataType: 'text',
+            type: "POST",
+            success: function (result) {
+                $('#ContactList').empty();
+                var obj = $.parseJSON(result);
+                $.each(obj, function (index, object) {
+                    $('#ContactList').append(
+                        '<li class="contactButton list-group-item">' +
+                        '<input type="hidden" id="contactID" value="'+ index +'"> '+ object +
+                        '</li>'
+                    );
+                });
+                $('.contactButton').on('click', function (e) {
+                    contactId = e.target.childNodes[0].value;
+                    $('#contactNaam').html(e.target.childNodes[1].nodeValue);
+                    openChat();
+                });
+            }
+        });
     });
 
     function openChat()
@@ -83,17 +93,16 @@
         getChatHistory(contactId);
         clearTimeout(timerId);
         timerId = setTimeout(autoRefresh, 2000);
-
     }
 
-    function someFunction() {
+    function searchCheck() {
         if (searchValue != '') {
-            $('#ContactListSearch').show();
+            $('#ContactSearchDiv').show();
             $('#ContactList').hide();
             contactSearch();
         }
         else {
-            $('#ContactListSearch').hide();
+            $('#ContactSearchDiv').hide();
             $('#ContactList').show();
         }
     }
@@ -117,7 +126,19 @@
                 $('.contactSearchButton').on('click', function (e) {
                     contactId = e.target.childNodes[0].value;
                     $('#contactNaam').html(e.target.childNodes[1].nodeValue);
+                    $('#searchInput').val('').trigger('input');
                     openChat();
+
+                    $('#ContactList').prepend(
+                        '<li class="contactButton list-group-item">' +
+                        '<input type="hidden" id="contactID" value="'+ contactId +'"> '+ e.target.childNodes[1].nodeValue +
+                        '</li>'
+                    );
+                    $('.contactButton').on('click', function (e) {
+                        contactId = e.target.childNodes[0].value;
+                        $('#contactNaam').html(e.target.childNodes[1].nodeValue);
+                        openChat();
+                    });
                 });
             }
         });
@@ -171,7 +192,7 @@
                 var element = document.getElementById("chatberichten");
                 element.scrollTop = element.scrollHeight;
             }
-        })
+        });
     }
 
     function getCorrectDate(badDate) {

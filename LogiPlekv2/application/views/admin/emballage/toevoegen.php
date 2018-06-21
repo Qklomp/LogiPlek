@@ -29,12 +29,10 @@ echo form_open('emballage/controleren', $attributes)
 
     <!-- Vrachtwagen kenteken selecteren -->
 
-    <div class="container" id="vrachtwagen">
-
-
+    <div class="container-fluid" id="vrachtwagen">
         <div class="row">
-            <div class="col-md-6">Vrachtwagen</div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6" col-sm-6>Vrachtwagen</div>
+            <div class="col-md-6 col-sm-6">
                 <div class="ui-select">
                     <div class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow">
                         <select class="form-control" onchange="Toggle()" type="text" name="Vrachtwagen"
@@ -61,23 +59,23 @@ echo form_open('emballage/controleren', $attributes)
     <!-- klantnummer invoeren -->
 
 
-    <div class="container " id="klantnummer">
-
+    <div class="container-fluid" id="klantnummer">
         <div class="row">
-            <div class="col-md-6">Klantnummer</div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-6">Klantnummer</div>
+            <div class="col-md-6 col-sm-6">
                 <input onchange="Toggle()" class="form-control" name="Klantnummer" id="Klantnummer">
             </div>
         </div>
         <p id="errorKlantnummer"></p>
     </div>
+
     <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
-        <div class="container " id="Ingevoerd_op">
+        <div class="container-fluid" id="Ingevoerd_op">
             <div class="row">
-                <div class="col-md-6">Toegevoegd op</div>
-                <div class="input-group col-md-6">
-                    <span class="input-group-addon input-sm"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control input-sm datepicker" name="Toegevoegd_op"
+                <div class="col-md-6 col-sm-6">Toegevoegd op</div>
+                <div class="input-group col-md-6 col-sm-6" id="datepickerDiv">
+                    <span class="input-group-addon input-md"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input type="text" class="form-control input-md datepicker" name="Toegevoegd_op"
                            placeholder="Toegevoegd op" value="<?php $newDate = date("d-m-Y", NOW());
                     echo $newDate ?>">
                 </div>

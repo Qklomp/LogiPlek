@@ -39,6 +39,13 @@ class Bericht extends MY_Controller
         echo json_encode($berichten);
     }
 
+    public function get_contacten()
+    {
+        $data = $this->user_data();
+        $contacten = $this->bericht_model->get_contacten($data['id']);
+        echo json_encode($contacten);
+    }
+
     public function verstuur_bericht()
     {
         $this->bericht_model->verstuur_bericht();

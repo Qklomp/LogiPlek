@@ -28,7 +28,7 @@ class Dashboard extends MY_Controller {
 
 
 
-    if($this->session->userdata('functie_id')==0)
+    if($this->session->userdata('functie_id')==4)
     {
         $data['main_content'] = 'admin/pages/dashboard';
     }

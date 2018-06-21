@@ -1303,6 +1303,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
     font-size: 1.25em;
     margin-left: 15px;
     margin-right: 15px;
+    margin-top: 15px;
 }
 
 #contactNaam {
@@ -1365,4 +1366,9 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
     background-color: #5f8c20;
     color: white;
     border-color: #5f8c20;
+}
+#datepickerDiv
+{
+    padding-left: 15px;
+    padding-right: 15px;
 }
