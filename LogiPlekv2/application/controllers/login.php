@@ -20,7 +20,7 @@ class Login extends CI_Controller {
     }
 
     $this->load->library('SimpleLoginSecure');
-    //$this->simpleloginsecure->create('miechelwachtmeester@distrivers.nl', '12345', false);
+
 
     $data['title'] = 'Login';
     $this->load->helper('form');

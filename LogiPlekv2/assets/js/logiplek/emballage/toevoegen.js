@@ -48,15 +48,14 @@ function mobileToggle(object) {
         case 'klantOmlaag':
             //input
 
-
             if (validation("vrachtwagen")) {
-                console.log("Vrachtwagen gedaan")
                 if (validation("klantnummer")) {
                     document.getElementById("vrachtwagen").style.display = "none";
                     document.getElementById("klantnummer").style.display = "none";
                     document.getElementById("emballageMee").style.display = "inline-block";
                     document.getElementById("emballageRetour").style.display = "none";
                     document.getElementById("verzendButton").style.display = "none";
+                    document.getElementById("Ingevoerd_op").style.display = "none";
 
                     //buttons
                     document.getElementById("klantOmlaag").style.display = "none";
@@ -74,6 +73,7 @@ function mobileToggle(object) {
             document.getElementById("emballageMee").style.display = "none";
             document.getElementById("emballageRetour").style.display = "none";
             document.getElementById("verzendButton").style.display = "none";
+            document.getElementById("Ingevoerd_op").style.display = "inline-block";
 
             //buttons
             document.getElementById("klantOmlaag").style.display = "inline-block";
@@ -87,6 +87,7 @@ function mobileToggle(object) {
             if (validation("emballageMee")) {
                 document.getElementById("vrachtwagen").style.display = "none";
                 document.getElementById("klantnummer").style.display = "none";
+                document.getElementById("Ingevoerd_op").style.display = "none";
                 document.getElementById("emballageMee").style.display = "none";
                 document.getElementById("emballageRetour").style.display = "inline-block";
                 document.getElementById("verzendButton").style.display = "inline-block";
@@ -103,6 +104,7 @@ function mobileToggle(object) {
             //input
             document.getElementById("vrachtwagen").style.display = "none";
             document.getElementById("klantnummer").style.display = "none";
+            document.getElementById("Ingevoerd_op").style.display = "none";
             document.getElementById("emballageMee").style.display = "inline-block";
             document.getElementById("emballageRetour").style.display = "none";
             document.getElementById("verzendButton").style.display = "none";
@@ -122,7 +124,7 @@ function validation(naam) {
     var elements = Array.prototype.slice.call(container.getElementsByTagName('input'));
     var selectthingy = Array.prototype.slice.call(container.getElementsByTagName('select'));
 
-    console.log(selectthingy);
+
     if (typeof selectthingy != 'undefined') {
         if (selectthingy.selectedIndex === 0) {
             console.log('dgfhfhf');
@@ -132,7 +134,6 @@ function validation(naam) {
             return true;
         }
     }
-    console.log(elements.length);
     if (elements.length !== 0) {
         elements.forEach(function (element) {
             console.log(element.id);
@@ -148,14 +149,11 @@ function validation(naam) {
 }
 
 function maak_vrachtwagen_cookie(functie_id) {
-    console.log("functie id:")
-    console.log(functie_id);
     if(functie_id != 0 && functie_id !=3){
         var today = new Date();
         var expiry = new Date(today.getTime() + 12 * 3600 * 1000);
         var value = document.getElementById("Vrachtwagen").selectedIndex;
         var name = "VrachtwagenSelectedIndex";
-        console.log(name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString());
         document.cookie = name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
         var name = "VrachtwagenValue";
         var value = document.getElementById("Vrachtwagen").value;
@@ -163,11 +161,9 @@ function maak_vrachtwagen_cookie(functie_id) {
     }
 }
 
-function doSomething() {
+function MakeCookie() {
     var myCookieValue = getCookie("VrachtwagenValue");
     var myCoockieSelectedIndex = getCookie("VrachtwagenSelectedIndex");
-    console.log(myCoockieSelectedIndex);
-    console.log(myCookieValue);
     if (myCoockieSelectedIndex == null) {
         // do cookie doesn't exist stuff;
     }
@@ -203,7 +199,6 @@ function getCookie(cname) {
 }
 
 $(document).ready(function () {
-    console.log("MyCookie");
-    doSomething();
+    MakeCookie();
 
 });

@@ -34,7 +34,7 @@ class Zoek extends MY_Controller
         $data['steunpunt_assortiment'] = $this->steunpunten_model->get_steunpunten_assortiment();
         $data['assortimenten'] = $this->cms_model->get_assortimenten();
 
-        $data['hits'] = count($data['autos']) + count($data['koeriers']) + count($data['personeel']) + count($data['routes']) + count($data['steunpunten']);
+        $data['hits'] = count($data['autos']) + count($data['koeriers']) + count($data['personeel']) + count($data['routes']) + count($data['steunpunten']) + count($data['emballage']);
         foreach ($data['steunpunt_assortiment'] as $s) {
             $data['steunpunt_assortiment'][$s['steunpunt_id']][$s['assortiment_id']] = true;
         }

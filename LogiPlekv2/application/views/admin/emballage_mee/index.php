@@ -60,7 +60,7 @@ echo form_open('emballage_mee/aanpassen', $attributes)
                     </div>
                 </div>
             </div>
-            <a href="#" class="pull-right btn btn-link btn-xs clone_it" data-target="emballage"><i
+            <a href="#" class="pull-right btn btn-link btn-xs clone_it" data-target="emballage_mee"><i
                         class="glyphicon glyphicon-plus"></i> Voeg nog een type toe</a>
         </div>
         <div class="form-group text-center col-lg-12">

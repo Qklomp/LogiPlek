@@ -40,7 +40,7 @@ class emballage extends MY_Controller
         $data['root'] = 'emballage';
 
 
-        if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) {
+        if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) {
             $data['main_content'] = 'admin/emballage/index';
         } else {
             $data['main_content'] = 'admin/emballage/toevoegen';
@@ -88,7 +88,7 @@ class emballage extends MY_Controller
             $this->emballage_model->toevoegen_emballage();
             $this->session->set_flashdata('toegevoegd', true);
 
-            if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) {
+            if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) {
                 redirect('/emballage/', 'refresh');
             } else {
                 redirect('/emballage/toevoegen', 'refresh');;
@@ -189,26 +189,15 @@ class emballage extends MY_Controller
         );
         $this->load->library('form_validation');
         $this->form_validation->set_rules('Klantnummer', 'Klantnummer', 'trim|required|numeric');
-        if ($this->form_validation->run() === false) {
+        $data['autos'] = $this->autos_model->get_autos();
 
-            $data['autos'] = $this->autos_model->get_autos();
+        $data['title'] = 'Emballage';
+        $data['root'] = 'emballage';
 
-            $data['title'] = 'Emballage';
-            $data['root'] = 'emballage';
+        $data['main_content'] = 'admin/emballage/controleren';
 
-            $data['main_content'] = 'admin/emballage/controleren';
+        $this->load->view('admin/includes/template', $data);
 
-            $this->load->view('admin/includes/template', $data);
-        } else {
-            $this->emballage_model->toevoegen_emballage();
-            $this->session->set_flashdata('toegevoegd', true);
-
-            if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) {
-                redirect('/emballage/', 'refresh');
-            } else {
-                redirect('/emballage/toevoegen', 'refresh');;
-            }
-        }
     }
 
 }

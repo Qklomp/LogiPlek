@@ -107,7 +107,7 @@
 
 </div>
 
-<?php if ($this->session->userdata('functie_id') == 0) : ?>
+<?php if ($this->session->userdata('functie_id') == 4) : ?>
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-heading">

@@ -178,6 +178,8 @@ class SimpleLoginSecure
 		
 		//Check against user table
 		$this->CI->db->where('email', $user_email);
+		$this->CI->db->where('status_id', "1");
+
 		$query = $this->CI->db->get_where($this->user_table);
 
 
@@ -279,6 +281,12 @@ class SimpleLoginSecure
 		} else {
 			return TRUE;
 		}
+	}
+
+	function hash_password($pass){
+        $hasher = new PasswordHash(PHPASS_HASH_STRENGTH, PHPASS_HASH_PORTABLE);
+        $user_pass_hashed = $hasher->HashPassword($pass);
+        return $user_pass_hashed;
 	}
 	
 }

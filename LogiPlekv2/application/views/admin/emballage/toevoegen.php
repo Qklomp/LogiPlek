@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
     <li><a href="/dashboard/"><i class="glyphicon glyphicon-home"></i> Logiplek</a></li>
-    <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
+    <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
         <li><a href="/emballage"> Emballage </a></li>
         <li class="active"> toevoegen</li>
     <?php else: ?>
@@ -14,7 +14,7 @@
 <?php echo (isset($toegevoegd)) ? '<div class="alert alert-dismissable alert-success"><button type="button" class="close" data-dismiss="alert">×</button>De gegevens zijn toegevoegd!</div>' : '' ?>
 
 <?php
-$attributes = array('class' => 'form-horizontal parsley','id '=>'form','onsubmit' =>'maak_vrachtwagen_cookie('.($this->session->userdata('functie_id')).')' , 'onload' =>'doSomething' );
+$attributes = array('class' => 'form-horizontal parsley','id '=>'form','onsubmit' =>'maak_vrachtwagen_cookie('.($this->session->userdata('functie_id')).')' , 'onload' =>'MakeCookie' );
 echo form_open('emballage/controleren', $attributes)
 ?>
 <div class="panel panel-default">
@@ -29,10 +29,12 @@ echo form_open('emballage/controleren', $attributes)
 
     <!-- Vrachtwagen kenteken selecteren -->
 
-    <div class="container-fluid" id="vrachtwagen">
+    <div class="container" id="vrachtwagen">
+
+
         <div class="row">
-            <div class="col-md-6 col-sm-6" col-sm-6>Vrachtwagen</div>
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-6">Vrachtwagen</div>
+            <div class="col-md-6">
                 <div class="ui-select">
                     <div class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow">
                         <select class="form-control" onchange="Toggle()" type="text" name="Vrachtwagen"
@@ -59,30 +61,37 @@ echo form_open('emballage/controleren', $attributes)
     <!-- klantnummer invoeren -->
 
 
-    <div class="container-fluid" id="klantnummer">
+    <div class="container " id="klantnummer">
+
         <div class="row">
-            <div class="col-md-6 col-sm-6">Klantnummer</div>
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-6">Klantnummer</div>
+            <div class="col-md-6">
                 <input onchange="Toggle()" class="form-control" name="Klantnummer" id="Klantnummer">
             </div>
         </div>
         <p id="errorKlantnummer"></p>
     </div>
 
-    <?php if ($this->session->userdata('functie_id') == 0 || $this->session->userdata('functie_id') == 3) : ?>
-        <div class="container-fluid" id="Ingevoerd_op">
+    <!-- Datum picker-->
+    <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
+        <div class="container " id="Ingevoerd_op">
             <div class="row">
-                <div class="col-md-6 col-sm-6">Toegevoegd op</div>
-                <div class="input-group col-md-6 col-sm-6" id="datepickerDiv">
-                    <span class="input-group-addon input-md"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control input-md datepicker" name="Toegevoegd_op"
-                           placeholder="Toegevoegd op" value="<?php $newDate = date("d-m-Y", NOW());
+                <div class="col-md-6">Toegevoegd op</div>
+                <div class="input-group col-md-6">
+                    <span class="input-group-addon input-sm"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input type="text" class="form-control input-sm datepicker" name="Toegevoegd_op"
+                           placeholder="Toegevoegd op" data-date-end-date="0d" value="<?php $newDate = date("d-m-Y", NOW());
                     echo $newDate ?>">
                 </div>
             </div>
         </div>
         <br>
+    <?php else : ?>
+        <input type="text" class="form-control input-sm datepicker hidden" name="Toegevoegd_op"
+               placeholder="Toegevoegd op" data-date-end-date="0d" value="<?php $newDate = date("d-m-Y", NOW());
+        echo $newDate ?>">
     <?php endif; ?>
+
     <!--button -->
     <div class="container">
         <div class="row">

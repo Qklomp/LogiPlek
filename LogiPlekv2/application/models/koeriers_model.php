@@ -28,7 +28,7 @@ class Koeriers_model extends CI_Model {
 
     if($email !== '')
     {      
-      $this->db->insert('koerier_email', array('koerier_id' => $id, '[e-mail]' => $email));      
+      $this->db->insert('koerier_email', array('koerier_id' => $id, 'e-mail' => $email));
     }
 
     /* TELEFOON */

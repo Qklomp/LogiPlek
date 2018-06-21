@@ -69,8 +69,5 @@
     ?>
 
 </div>
-<div id="footer">
-    <span class="muted credit pull-right">&copy 2018 Jeroen Hoegen & Quincy Klomp</span>
-</div>
 </body>
 </html>
