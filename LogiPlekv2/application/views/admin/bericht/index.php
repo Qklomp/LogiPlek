@@ -44,7 +44,8 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
 <script>
-    var timerId, contactId, searchValue;
+    var timerId, contactId, searchValue, contactList;
+    contactList = new Array();
 
     $(document).ready(function () {
         $('#searchInput').on('input', function (e) {
@@ -77,6 +78,7 @@
                         '<input type="hidden" id="contactID" value="'+ index +'"> '+ object +
                         '</li>'
                     );
+                    contactList.push(object);
                 });
                 $('.contactButton').on('click', function (e) {
                     contactId = e.target.childNodes[0].value;
@@ -127,18 +129,22 @@
                     contactId = e.target.childNodes[0].value;
                     $('#contactNaam').html(e.target.childNodes[1].nodeValue);
                     $('#searchInput').val('').trigger('input');
-                    openChat();
 
-                    $('#ContactList').prepend(
-                        '<li class="contactButton list-group-item">' +
-                        '<input type="hidden" id="contactID" value="'+ contactId +'"> '+ e.target.childNodes[1].nodeValue +
-                        '</li>'
-                    );
-                    $('.contactButton').on('click', function (e) {
-                        contactId = e.target.childNodes[0].value;
-                        $('#contactNaam').html(e.target.childNodes[1].nodeValue);
-                        openChat();
-                    });
+                    if(contactList.indexOf(e.target.childNodes[1].nodeValue) === -1)
+                    {
+                        $('#ContactList').prepend(
+                            '<li class="contactButton list-group-item">' +
+                            '<input type="hidden" id="contactID" value="'+ contactId +'"> '+ e.target.childNodes[1].nodeValue +
+                            '</li>'
+                        );
+                        $('.contactButton').on('click', function (e) {
+                            contactId = e.target.childNodes[0].value;
+                            $('#contactNaam').html(e.target.childNodes[1].nodeValue);
+                            openChat();
+                        });
+                        contactList.push(e.target.childNodes[1].nodeValue);
+                    }
+                    openChat();
                 });
             }
         });

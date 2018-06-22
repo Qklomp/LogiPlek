@@ -39,7 +39,7 @@
 
     <?php
     echo validation_errors();
-    $attrs = array('class' => 'form-signin', 'onsubmit' => 'console.log(\'hallo\')');
+    $attrs = array('class' => 'form-signin');
     echo form_open('login/validate', $attrs);
     ?>
 

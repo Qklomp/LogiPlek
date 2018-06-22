@@ -166,10 +166,8 @@ class bericht_model extends CI_Model
     {
         $this->db->select('id, voornaam, achternaam');
         $this->db->from('personeel');
-        $this->db->like('voornaam', $searchValue, 'both');
-        $this->db->or_like('achternaam', $searchValue, 'both');
+        $this->db->where("CONCAT(voornaam, ' ', achternaam) LIKE '%".$searchValue."%'", NULL, FALSE);
         $this->db->where('status_id', '1');
-        $this->db->limit(10);
 
         $query = $this->db->get();
         $result = $query->result_array();

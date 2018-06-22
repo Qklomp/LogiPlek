@@ -26,7 +26,6 @@ $(document).ready(function() {
 
 			api.columns().indexes().flatten().each( function ( i ) {
 				var column = api.column( i );
-																		console.log( i );
 				var select = $('<select><option value=""></option></select>')
 					.appendTo( $(column.footer()).empty() )
 					.on( 'change', function () {
@@ -592,7 +591,6 @@ $(document).ready(function() {
 
 			api.columns().indexes().flatten().each( function ( i ) {
 				var column = api.column( i );
-																		console.log( i );
 				var select = $('&lt;select&gt;&lt;option value=&quot;&quot;&gt;&lt;/option&gt;&lt;/select&gt;')
 					.appendTo( $(column.footer()).empty() )
 					.on( 'change', function () {

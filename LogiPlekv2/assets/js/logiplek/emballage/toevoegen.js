@@ -127,7 +127,6 @@ function validation(naam) {
 
     if (typeof selectthingy != 'undefined') {
         if (selectthingy.selectedIndex === 0) {
-            console.log('dgfhfhf');
             document.getElementById("errorVrachtwagen").innerHTML = "Welke vrachtwagen rij jij? Er moet wel eentje geselecteerd worden!";
             return false;
         } else {
@@ -136,7 +135,6 @@ function validation(naam) {
     }
     if (elements.length !== 0) {
         elements.forEach(function (element) {
-            console.log(element.id);
             if (element.value !== "0") {
                 return true;
             } else {
