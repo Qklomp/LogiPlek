@@ -29,7 +29,7 @@ echo form_open('emballage/controleren', $attributes)
 
     <!-- Vrachtwagen kenteken selecteren -->
 
-    <div class="container" id="vrachtwagen">
+    <div class="container-fluid" id="vrachtwagen">
 
 
         <div class="row">
@@ -61,7 +61,7 @@ echo form_open('emballage/controleren', $attributes)
     <!-- klantnummer invoeren -->
 
 
-    <div class="container " id="klantnummer">
+    <div class="container-fluid" id="klantnummer">
 
         <div class="row">
             <div class="col-md-6">Klantnummer</div>
@@ -74,12 +74,12 @@ echo form_open('emballage/controleren', $attributes)
 
     <!-- Datum picker-->
     <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
-        <div class="container " id="Ingevoerd_op">
+        <div class="container-fluid" id="Ingevoerd_op">
             <div class="row">
                 <div class="col-md-6">Toegevoegd op</div>
-                <div class="input-group col-md-6">
-                    <span class="input-group-addon input-sm"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="text" class="form-control input-sm datepicker" name="Toegevoegd_op"
+                <div class="input-group col-md-6" id="datepickerDiv">
+                    <span class="input-group-addon input-md"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input type="text" class="form-control input-md datepicker" name="Toegevoegd_op"
                            placeholder="Toegevoegd op" data-date-end-date="0d" value="<?php $newDate = date("d-m-Y", NOW());
                     echo $newDate ?>">
                 </div>
@@ -93,7 +93,7 @@ echo form_open('emballage/controleren', $attributes)
     <?php endif; ?>
 
     <!--button -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="mobileShow col-md-12" id="klantOmlaag" onclick="mobileToggle('klantOmlaag')"><i
                         class="fa fa-chevron-down"></i> Verder
@@ -106,7 +106,7 @@ echo form_open('emballage/controleren', $attributes)
     <!-- emballage mee invoeren -->
 
 
-    <div class="container" style="display: none;" id="emballageMee">
+    <div class="container-fluid" style="display: none;" id="emballageMee">
         <div class="row">
             <h3 class="col-md-6">Emballage mee</h3>
         </div>
@@ -126,7 +126,7 @@ echo form_open('emballage/controleren', $attributes)
 
         <?php endforeach ?>
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="mobileShow col-md-12" style="display: none;" id="emballageMeeOmhoog"
                      onclick="mobileToggle('emballageMeeOmhoog')"><i class="fa fa-chevron-up"></i> Terug
@@ -142,7 +142,7 @@ echo form_open('emballage/controleren', $attributes)
     <!-- emballage retour invoeren -->
 
 
-    <div class="container" style="display: none;" id="emballageRetour">
+    <div class="container-fluid" style="display: none;" id="emballageRetour">
         <div class="row">
             <h3 class="col-md-6">Emballage Retour</h3>
         </div>
@@ -164,7 +164,7 @@ echo form_open('emballage/controleren', $attributes)
         <?php endforeach ?>
 
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="mobileShow col-md-12" style="display: none;" id="emballageRetourOmhoog"
                      onclick="mobileToggle('emballageRetourOmhoog')"><i class="fa fa-chevron-up"></i> Terug
@@ -173,7 +173,7 @@ echo form_open('emballage/controleren', $attributes)
         </div>
 
 
-        <div class="container" style="display: none;" id="verzendButton">
+        <div class="container-fluid" style="display: none;" id="verzendButton">
             <hr>
 
             <div class="row">
