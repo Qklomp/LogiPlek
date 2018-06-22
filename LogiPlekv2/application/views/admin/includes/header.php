@@ -22,6 +22,8 @@
     <link rel="icon" href="<?php echo asset_url() ?>img/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="<?php echo asset_url() ?>img/favicon.ico" type="image/x-icon"/>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+    <script>var base_url = '<?php echo base_url();?>';</script>
 </head>
 <body>
 
