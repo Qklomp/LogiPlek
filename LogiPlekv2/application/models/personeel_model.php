@@ -206,4 +206,25 @@ class Personeel_model extends CI_Model
     {
         $this->db->update('personeel', array('status_id' => 1), array('id' => $id));
     }
+
+    public function get_vrachtwagen($id)
+    {
+        $this->db->select('*');
+        $this->db->from('personeel_auto');
+        $this->db->where('personeel_id', $id);
+        $this->db->join('autos', 'personeel_auto.auto_id = autos.id');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function set_vrachtwagen($id)
+    {
+        $this->db->select('id');
+        $this->db->from('autos');
+        $this->db->where('kenteken', $this->input->post('kenteken'));
+        $query = $this->db->get();
+        $result = $query->row();
+
+        $this->db->update('personeel_auto', array('auto_id' => $result->id), array('personeel_id' => $id));
+    }
 }

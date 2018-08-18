@@ -16,10 +16,6 @@ class emballage_model extends CI_Model
 
     public function toevoegen_emballage()
     {
-        $handle = fopen('D://login.txt', 'a');
-        fwrite($handle, "Controller \r\n");
-        fwrite($handle, $this->session->userdata('voornaam'));
-        fclose($handle);
         $user = $this->session->userdata('voornaam') . ' ' . $this->session->userdata('achternaam');
         $emballageMeeArray = $this->arrayConv($this->get_emballageMee());
         $emballageRetourArray = $this->arrayConv($this->get_emballageRetour());
@@ -58,10 +54,8 @@ class emballage_model extends CI_Model
                 } else {
 
                 }
-
             }
         }
-
     }
 
     public function bewerk_emballage($id)
@@ -70,12 +64,12 @@ class emballage_model extends CI_Model
         $emballageMeeArray = $this->arrayConv($this->get_emballageMee());
         $emballageRetourArray = $this->arrayConv($this->get_emballageRetour());
 
-
         $originalDate = $this->input->post('Toegevoegd_op');
         $newDate = date("Y-m-d", strtotime($originalDate));
+
         /* Emballage */
         $data = array(
-            'klantnummer' => $this->input->post('klantnummer'),
+            'klantnummer' => $this->input->post('Klantnummer'),
             'vrachtwagen' => $this->input->post('Vrachtwagen'),
             'toegevoegd_door' => $user,
             'toegevoegd_op' => $newDate
@@ -90,7 +84,7 @@ class emballage_model extends CI_Model
         $this->db->delete('emballage_emballageretour');
 
         foreach ($this->input->post(null, true) as $key => $value) {
-            if ($value != '0' && ($key != 'Vrachtwagen' && $key != 'klantnummer')) {
+            if ($value != '0' && ($key != 'Vrachtwagen' && $key != 'Klantnummer')) {
                 $dbKey = explode("_", $key);
 
                 if ($dbKey[1] === "mee") {
@@ -111,11 +105,9 @@ class emballage_model extends CI_Model
 
                     $this->db->where('emballage_id', $id);
                     $this->db->insert('emballage_emballageretour', $data);
-                } else {
                 }
             }
         }
-
     }
 
     public function delete_emballage($id)

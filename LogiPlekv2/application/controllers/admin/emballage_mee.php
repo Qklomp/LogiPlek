@@ -21,7 +21,6 @@ class emballage_mee extends MY_Controller
 
         $data['emballage_mee'] = $this->emballage_model->get_emballageMee();
 
-
         $data['title'] = 'Emballage soorten mee';
         $data['root'] = 'emballage';
         $data['main_content'] = 'admin/emballage_mee/index';

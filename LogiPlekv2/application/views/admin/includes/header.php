@@ -3,11 +3,11 @@
 <head>
     <title>Logiplek - <?php echo $title ?></title>
 
-    <!--[if lt IE 9]>
+    <!--[if lt IE 9] -->
     <script src="/js/hmtl5shiv.js"></script>
     <![endif]-->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <meta name="robots" content="noindex,nofollow">
     <meta charset="UTF-8">
@@ -22,7 +22,6 @@
     <link rel="icon" href="<?php echo asset_url() ?>img/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="<?php echo asset_url() ?>img/favicon.ico" type="image/x-icon"/>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
     <script>var base_url = '<?php echo base_url();?>';</script>
 </head>
 <body>
@@ -100,14 +99,14 @@
                     <li <?php echo ($root === "Ritregistratie") ? 'class="active"' : '' ?>><a href="/ritregistratie/"><i
                                     class="fa fa-list-alt"></i><span class="nav-span">Ritregistratie</span></a></li>
                     <li <?php echo ($root === "Emballage") ? 'class="active"' : '' ?>><a href="/emballage/"><i
-                                    class="fa fa-road" aria-hidden="true"></i><span
+                                    class="fa fa-truck" aria-hidden="true"></i><span
                                     class="nav-span">Emballage</span></a></li>
-              
+
                     <!-- Checks if user is admin-->
                     <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
                         <hr>
                         <li <?php echo ($root === "Auto's") ? 'class="active"' : '' ?>><a href="/autos/"><i
-                                        class="fa fa-truck"></i><span class="nav-span">Auto's</span></a></li>
+                                        class="fa fa-automobile"></i><span class="nav-span">Auto's</span></a></li>
 
                         <li <?php echo ($root === "Koeriers") ? 'class="active"' : '' ?>><a href="/koeriers/"><i
                                         class="fa fa-rocket"></i><span class="nav-span">Koeriers</span></a></li>
@@ -118,29 +117,36 @@
                         <li <?php echo ($root === "Steunpunten") ? 'class="active"' : '' ?>><a href="/steunpunten/"><i
                                         class="glyphicon glyphicon-shopping-cart"></i><span
                                         class="nav-span">Steunpunten</span></a></li>
-
                     <?php endif; ?>
                 <?php endif; ?>
+                <?php $temp = $this->bericht_model->get_ongelezen_berichten_aantal($this->session->userdata['id']); ?>
+                <?php $ongelezen_aantal = $temp['aantal']; ?>
                 <?php if ($this->session->userdata('functie_id') == 1 || $this->session->userdata('functie_id') == 2) : ?>
-                    <li <?php echo ($root === "bericht") ? 'class="active"' : '' ?>><a href="/bericht"><i
-                                    class="fa fa-inbox" aria-hidden="true"></i><span
-                                    class="nav-span">Berichten (<?php echo count($this->bericht_model->get_ongelezen_berichten($this->session->userdata['id'])); ?>)</span></a></li>
-                    <li <?php echo ($root === "emballage") ? 'class="active"' : '' ?>><a href="/emballage/toevoegen"><i
+                    <li <?php echo ($root === "Emballage") ? 'class="active"' : '' ?>><a href="/emballage/toevoegen"><i
                                     class="fa fa-truck" aria-hidden="true"></i><span class="nav-span">Emballage registratie</span></a>
+                    </li>
+                    <li <?php echo ($root === "Brandstof") ? 'class="active"' : '' ?>><a href="/brandstof/toevoegen"><i
+                                    class="fa fa-tint" aria-hidden="true"></i><span class="nav-span">Brandstof registratie</span></a>
+                    </li>
+                    <li <?php echo ($root === "Bericht") ? 'class="active"' : '' ?>><a href="/bericht"><i
+                                    class="fa fa-inbox" aria-hidden="true"></i><span
+                                    class="nav-span" id="totaalOngelezen">Berichten (<?php echo $ongelezen_aantal; ?>)
+                            </span></a>
                     </li>
                 <?php endif; ?>
 
                 <?php if ($this->session->userdata('functie_id') == 4 || $this->session->userdata('functie_id') == 3) : ?>
-                <hr>
-                <li><a href="/bericht"><i class="fa fa-inbox"></i><span
-                            class="nav-span">Berichten (<?php echo count($this->bericht_model->get_ongelezen_berichten($this->session->userdata['id']))?>)</span></a></li>
-                <li><a href="http://webmail.distrivers.nl" target="_blank"><i class="fa fa-envelope"></i><span
-                                class="nav-span">Webmail</span></a></li>
-                <li><a href="http://www.gps-buddy.com/login" target="_blank"><i class="fa fa-crosshairs"></i><span
-                                class="nav-span">GPS Buddy</span></a></li>
-                <hr>
+                    <hr>
+                    <li><a href="/bericht"><i class="fa fa-inbox"></i><span
+                                    class="nav-span" id="totaalOngelezen">Berichten (<?php echo $ongelezen_aantal; ?>)
+                        </span></a></li>
+                    <li><a href="http://webmail.distrivers.nl" target="_blank"><i class="fa fa-envelope"></i><span
+                                    class="nav-span">Webmail</span></a></li>
+                    <li><a href="http://www.gps-buddy.com/login" target="_blank"><i class="fa fa-crosshairs"></i><span
+                                    class="nav-span">GPS Buddy</span></a></li>
+                    <hr>
+                <?php endif; ?>
             </ul>
-            <?php endif; ?>
             <!-- END SIDEBAR -->
 
         </div>
@@ -154,6 +160,3 @@
                     schakelen.
                 </div>
             </noscript>
-              
-          
-         

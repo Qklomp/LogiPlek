@@ -2,14 +2,14 @@
  * ==================== DOCUMENT READY ====================
  */
 
-$(document).ready(function() 
-{ 
+$(document).ready(function()
+{
   if ($.cookie('collapse-trigger') === 'in')
-  {   
+  {
     $( ".collapse-trigger" ).attr( "id", "in" );
-    $( ".nav-span" ).hide(); 
-    $( ".sidebar" ).css( 'width','50px' );  
-    $( ".main" ).css({ 'margin-left': '3%', 'width' : '97%' } );    
+    $( ".nav-span" ).hide();
+    $( ".sidebar" ).css( 'width','50px' );
+    $( ".main" ).css({ 'margin-left': '3%', 'width' : '97%' } );
   }
 });
 
@@ -39,36 +39,36 @@ $( ".open-deleteAlert" ).click( function () {
 
 /*
  * COLLAPSEABLE SIDEBAR
- */ 
+ */
 
 $( ".collapse-trigger" ).click(function() {
-  if( $( ".collapse-trigger" ).attr("id") == 'out') {        
-    $( ".nav-span" ).fadeOut(250);    
-    $( ".sidebar" ).animate({ 'width' : '50px' }, 'slow');  
-    $( ".main" ).animate({ 'margin-left': '3%', 'width' : '97%' }, 'slow');      
+  if( $( ".collapse-trigger" ).attr("id") == 'out') {
+    $( ".nav-span" ).fadeOut(250);
+    $( ".sidebar" ).animate({ 'width' : '50px' }, 'slow');
+    $( ".main" ).animate({ 'margin-left': '3%', 'width' : '97%' }, 'slow');
     $( ".collapse-trigger" ).attr( "id", "in" );
     $.cookie('collapse-trigger', 'in', {expires: 30, path: '/'});
-  } else {        
-    $( ".sidebar" ).animate({ 'width' : '16.6666667%' }, 'slow');  
-    $( ".main" ).animate({ 'margin-left': '16.6666667%', 'width' : '83.3333333%' }, 'slow');    
+  } else {
+    $( ".sidebar" ).animate({ 'width' : '16.6666667%' }, 'slow');
+    $( ".main" ).animate({ 'margin-left': '16.6666667%', 'width' : '83.3333333%' }, 'slow');
     $( ".collapse-trigger" ).attr( "id", "out" );
-    setTimeout(function() { 
-      $( ".nav-span" ).fadeIn(); 
+    setTimeout(function() {
+      $( ".nav-span" ).fadeIn();
     }, 750);
-    $.cookie('collapse-trigger', 'out', {expires: 30, path: '/'});  
+    $.cookie('collapse-trigger', 'out', {expires: 30, path: '/'});
   }
 });
 
 $( window ).resize(function() {
   if ( $( window ).width() <= 768 ) {
     if( $( ".collapse-trigger" ).attr('id') == 'out') {
-      $( ".sidebar" ).removeAttr( 'style' );      
+      $( ".sidebar" ).removeAttr( 'style' );
       $( ".nav-span" ).hide();
-    }  
-    $( ".main" ).removeAttr( 'style' );        
-  } else if ( $( window ).width() > 768 ) { 
+    }
+    $( ".main" ).removeAttr( 'style' );
+  } else if ( $( window ).width() > 768 ) {
     if( $( ".collapse-trigger" ).attr('id') == 'in') {
-      $( ".main" ).animate({ 'margin-left': '3%', 'width' : '97%' }, 'slow');   
+      $( ".main" ).animate({ 'margin-left': '3%', 'width' : '97%' }, 'slow');
     } else {
       $( ".nav-span" ).show();
     }

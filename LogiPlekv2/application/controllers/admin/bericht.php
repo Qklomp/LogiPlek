@@ -17,51 +17,58 @@ class Bericht extends MY_Controller
     public function index()
     {
         $data = $this->user_data();
-        $data['contacten'] = $this->bericht_model->get_contacten($data['id']);
 
         $data['js'] = array(
             'logiplek/bericht/index',
         );
 
         $data['title'] = 'Berichten';
-        $data['root'] = 'bericht';
+        $data['root'] = 'Bericht';
         $data['main_content'] = 'admin/bericht/index';
 
         $this->load->view('admin/includes/template', $data);
     }
 
 
-    public function get_chat()
+    public function get_berichten()
     {
-        $data = $this->user_data();
-        $data['contactId'] = $this->input->post('contactId');
-        $berichten = $this->bericht_model->get_berichten($data['id'], $data['contactId']);
+        $berichten = $this->bericht_model->get_berichten();
         echo json_encode($berichten);
     }
 
     public function get_contacten()
     {
-        $data = $this->user_data();
-        $contacten = $this->bericht_model->get_contacten($data['id']);
+        $contacten = $this->bericht_model->get_contacten();
+
+        foreach ($contacten as $key => $value)
+        {
+            $aantal_ongelezen = $this->bericht_model->get_ongelezen_berichten_aantal($value['contact']);
+            $contacten[$key]['aantal_ongelezen'] = $aantal_ongelezen['aantal'];
+        }
+
         echo json_encode($contacten);
     }
 
     public function verstuur_bericht()
     {
-        $this->bericht_model->verstuur_bericht();
-        return true;
+        $bericht = $this->bericht_model->verstuur_bericht();
+        echo json_encode($bericht);
     }
 
     public function refreshCheck()
     {
-        $data = $this->user_data();
-        echo json_encode($this->bericht_model->refreshCheck($data['id']));
+        echo json_encode($this->bericht_model->refreshCheck());
     }
 
     public function contactSearch()
     {
-        $searchValue = $this->input->post('searchValue');
-        $contacten = $this->bericht_model->contactSearch($searchValue);
+        $contacten = $this->bericht_model->contactSearch();
         echo json_encode($contacten);
+    }
+
+    public function get_ongelezen()
+    {
+        $berichten = $this->bericht_model->get_ongelezen_berichten();
+        echo json_encode($berichten);
     }
 }

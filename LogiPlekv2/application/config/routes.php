@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['dashboard'] = 'admin/dashboard';
+$route['dashboard/setVrachtwagen'] = 'admin/dashboard/setVrachtwagen';
 $route['updates'] = 'admin/dashboard/updates';
 $route['zoek'] = 'admin/zoek';
 
@@ -183,8 +184,9 @@ $route['gebruiker/pw'] = 'admin/user/reset_password';
  */
 
 $route['bericht'] = '/admin/bericht';
-$route['bericht/get_chat'] = '/admin/bericht/get_chat';
+$route['bericht/get_berichten'] = '/admin/bericht/get_berichten';
 $route['bericht/get_contacten'] = '/admin/bericht/get_contacten';
+$route['bericht/get_ongelezen'] = '/admin/bericht/get_ongelezen';
 $route['bericht/verstuur_bericht'] = '/admin/bericht/verstuur_bericht';
 $route['bericht/refreshCheck'] = '/admin/bericht/refreshCheck';
 $route['bericht/contactSearch'] = '/admin/bericht/contactSearch';

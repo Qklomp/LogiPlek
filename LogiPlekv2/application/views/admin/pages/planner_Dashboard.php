@@ -15,9 +15,12 @@
             <div class="panel panel-warning panel-dash">
                 <div class="panel-heading">
                     <ul class="list-inline">
-                        <li><a href="/autos/"><h3><i class="fa fa-truck"></i> <?php echo count($autos) ?> auto's</h3></a></li>
-                        <li><a href="/autos/toevoegen" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
-                        <li><a href="/autos/printen" target="_blank" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-print"></i> Printen</span></a></li>
+                        <li><a href="/autos/"><h3><i class="fa fa-truck"></i> <?php echo count($autos) ?> auto's</h3>
+                            </a></li>
+                        <li><a href="/autos/toevoegen" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
+                        <li><a href="/autos/printen" target="_blank" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-print"></i> Printen</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -25,9 +28,12 @@
             <div class="panel panel-info panel-dash">
                 <div class="panel-heading">
                     <ul class="list-inline">
-                        <li><a href="/koeriers/"><h3><i class="fa fa-rocket"></i> <?php echo count($koeriers) ?> koeriers</h3></a></li>
-                        <li><a href="/koeriers/toevoegen" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
-                        <li><a href="/koeriers/printen" target="_blank" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-print"></i> Printen</span></a></li>
+                        <li><a href="/koeriers/"><h3><i class="fa fa-rocket"></i> <?php echo count($koeriers) ?>
+                                    koeriers</h3></a></li>
+                        <li><a href="/koeriers/toevoegen" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
+                        <li><a href="/koeriers/printen" target="_blank" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-print"></i> Printen</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -35,9 +41,12 @@
             <div class="panel panel-success panel-dash">
                 <div class="panel-heading">
                     <ul class="list-inline">
-                        <li><a href="/personeel/"><h3><i class="fa fa-users"></i> <?php echo count($personeel) ?> personeelsleden</h3></a></li>
-                        <li><a href="/personeel/toevoegen" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
-                        <li><a href="/personeel/printen" target="_blank" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-print"></i> Printen</span></a></li>
+                        <li><a href="/personeel/"><h3><i class="fa fa-users"></i> <?php echo count($personeel) ?>
+                                    personeelsleden</h3></a></li>
+                        <li><a href="/personeel/toevoegen" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
+                        <li><a href="/personeel/printen" target="_blank" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-print"></i> Printen</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -45,9 +54,12 @@
             <div class="panel panel-primary panel-dash">
                 <div class="panel-heading">
                     <ul class="list-inline">
-                        <li><a href="/routes/"><h3><i class="fa fa-road"></i> <?php echo count($routes) ?> routes</h3></a></li>
-                        <li><a href="/routes/toevoegen" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
-                        <li><a href="/routes/printen" target="_blank" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-print"></i> Printen</span></a></li>
+                        <li><a href="/routes/"><h3><i class="fa fa-road"></i> <?php echo count($routes) ?> routes</h3>
+                            </a></li>
+                        <li><a href="/routes/toevoegen" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
+                        <li><a href="/routes/printen" target="_blank" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-print"></i> Printen</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -55,16 +67,44 @@
             <div class="panel panel-danger panel-dash">
                 <div class="panel-heading">
                     <ul class="list-inline">
-                        <li><a href="/steunpunten/"><h3><i class="glyphicon glyphicon-shopping-cart"></i> <?php echo count($steunpunten) ?> steunpunten</h3></a></li>
-                        <li><a href="/steunpunten/toevoegen" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
-                        <li><a href="/steunpunten/printen" target="_blank" class="btn btn-xs btn-link"><i class="glyphicon glyphicon-print"></i> Printen</span></a></li>
+                        <li><a href="/steunpunten/"><h3><i
+                                            class="glyphicon glyphicon-shopping-cart"></i> <?php echo count($steunpunten) ?>
+                                    steunpunten</h3></a></li>
+                        <li><a href="/steunpunten/toevoegen" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-plus"></i> Toevoegen</span></a></li>
+                        <li><a href="/steunpunten/printen" target="_blank" class="btn btn-xs btn-link"><i
+                                        class="glyphicon glyphicon-print"></i> Printen</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-warning panel-dash">
+                <div class="panel-heading">
+                    <ul class="list-inline">
+                        <li><a href="/bericht/"><h3><i class="fa fa-inbox" aria-hidden="true"></i> Berichten</h3></a>
+                        </li>
+                        <br>
+                        <li>
+                            <?php
+                            $temp = $this->bericht_model->get_ongelezen_berichten_aantal($this->session->userdata['id']);
+                            $ongelezen_aantal = $temp['aantal'];
+
+                            if ($ongelezen_aantal === '0') {
+                                echo "U heeft geen nieuwe berichten";
+                            } else if ($ongelezen_aantal === '1') {
+                                echo "U heeft 1 ongelezen bericht";
+                            } else {
+                                echo "U heeft " . $ongelezen_aantal . " ongelezen berichten";
+                            } ?>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <div class="panel panel-default col-lg-5 text-center">
                 <div class="panel-body">
-                    <a href="http://webmail.distrivers.nl" target="_blank"><h5><i class="glyphicon glyphicon-envelope"></i> Webmail</h5></a>
+                    <a href="http://webmail.distrivers.nl" target="_blank"><h5><i
+                                    class="glyphicon glyphicon-envelope"></i> Webmail</h5></a>
                 </div>
             </div>
 
@@ -84,23 +124,11 @@
 <div class="col-lg-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Berichten</h3>
-        </div>
-
-        <div class="panel-footer">
-
-        </div>
-    </div>
-</div>
-
-<div class="col-lg-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
             <h3>Updates</h3>
         </div>
         <div class="panel-body">
             <?php foreach ($updates as $update): ?>
-                <p><strong><?php echo nl_date($update['datum'])?> </strong> <?php echo $update['update'] ?></p>
+                <p><strong><?php echo nl_date($update['datum']) ?> </strong> <?php echo $update['update'] ?></p>
                 <hr>
             <?php endforeach ?>
         </div>

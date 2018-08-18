@@ -293,7 +293,38 @@ body {
     margin-bottom: 5px;
 }
 
+/* ===== EMALLAGE ===== */
+
+#terugButton {
+    display: none;
+}
+
+#emballageInfo {
+    display: block;
+}
+
+#emballageMee {
+    display: block;
+}
+
+#emballageRetour {
+    display: block;
+}
+
+#emballageControle {
+    display: none;
+}
+
+#verzendDiv {
+    display: none;
+}
+
 /* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    #terugButton {
+        display: inline-block;
+    }
+}
 
 @media (max-width: 768px) {
     .navbar-brand p {
@@ -324,6 +355,22 @@ body {
     .pagination > li > a, .pagination > li > span {
         padding: 5px 9px;
     }
+
+    .mobileShow {
+        display: inline-block;
+    }
+
+    #emballageMee {
+        display: none;
+    }
+
+    #emballageRetour {
+        display: none;
+    }
+
+    #terugButton {
+        display: inline-block;
+    }
 }
 
 @media (max-width: 480px) {
@@ -333,12 +380,12 @@ body {
         z-index: 0;
     }
 
-    .mobileShow {
-        display: inline;
-    }
-
     .main {
         margin-left: 25px !important;
+    }
+
+    #terugButton {
+        display: inline-block;
     }
 }
 
@@ -1295,8 +1342,9 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
 
 #contactContainer {
     overflow-y: auto;
-    max-height: 500px;
+    height: 400px;
 }
+
 .contactButton, .contactSearchButton {
     cursor: pointer;
     user-select: none;
@@ -1306,38 +1354,52 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
     margin-top: 15px;
 }
 
-#contactNaam {
-    text-align: center;
-    font-size: 20px;
-    padding: 5px;
+.ongelezenNumber
+{
+    float: right;
+}
+
+.contactSearchButton {
+    border: 1px solid rgb(77, 144, 254);
 }
 
 #chatberichten {
     display: flex;
     flex-direction: column;
-    height: 500px;
-    border-left: 1px solid #dddddd;
+    height: 400px;
+    border: 1px solid #dddddd;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #chatberichten > div {
     position: relative;
-    padding: 15px;
-    max-width: 45%;
+    max-width: 60%;
+    min-width: 15%;
+    margin-bottom: 3px;
+    padding: 10px;
+    border: 1px solid #dddddd;
+}
+
+.chatberichtStamp {
+    font-size: 0.75em;
+    margin-right: -7px;
+    margin-bottom: -7px;
+    float: right;
 }
 
 .chatberichtLinks {
     align-self: flex-start;
     background-color: beige;
-    border-radius: 15px 50px 50px 5px;
     margin-left: 15px;
+    border-radius: 0px 5px 5px 0px;
 }
 
 .chatberichtRechts {
     align-self: flex-end;
     background-color: #def8c6;
-    border-radius: 50px 15px 5px 50px;
     margin-right: 15px;
+    border-radius: 5px 0px 0px 5px;
 }
 
 .chatberichtDate {
@@ -1349,26 +1411,86 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
     margin-bottom: 15px;
 }
 
-#berichtInput {
-    width: 75%;
-    margin-left: 15px;
+.chatberichtOngelezen{
+    align-self: center;
+    background-color: #f5f5f5;
+    width: calc(100% - 2px);
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
 }
 
-#sendButton, #addButton {
-    padding: 7px 20px 7px 20px;
-}
-#sendButton{
-    width: 20%;
-}
-#addButton{
-    float: right;
+#searchInput {
+    margin-left: 15px;
     margin-right: 15px;
-    background-color: #5f8c20;
-    color: white;
-    border-color: #5f8c20;
+    width: calc(100% - 30px);
 }
-#datepickerDiv
-{
+
+#chatContainerHeader {
+    display: flex;
+}
+
+#terugButtonDiv {
+    align-self: flex-start;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#terugButton {
+    font-size: 1.75em;
+    cursor: pointer;
+}
+
+#contactNaam {
+    font-size: 1.5em;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#chatContainerFooter {
+    display: flex;
+    padding-top: 5px;
+}
+
+#berichtInput {
+    align-self: flex-start;
+    width: 100%;
+    border: 1px solid #dddddd;
+}
+
+#sendButton {
+    width: 10%;
+    padding: 6px;
+    align-self: flex-end;
+}
+
+#datepickerDiv {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.emballage-mobile-button {
+    border: 1px solid black;
+    border-radius: 10px;
+    user-select: none;
+    cursor: pointer;
+    margin: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#emballageRetourOmlaag, #emballageControleTerug {
+    display: inline-block;
+}
+
+#emballageControleWarning {
+    display: none;
+}
+.selectNoPaddingStart{
+    -webkit-padding-start: 3px;
 }

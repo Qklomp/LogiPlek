@@ -21,7 +21,6 @@ class emballage_retour extends MY_Controller
 
         $data['emballage_retour'] = $this->emballage_model->get_emballageRetour();
 
-
         $data['title'] = 'Emballage soorten retour';
         $data['root'] = 'emballage';
         $data['main_content'] = 'admin/emballage_retour/index';
